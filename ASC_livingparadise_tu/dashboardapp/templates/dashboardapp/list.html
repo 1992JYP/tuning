@@ -1,455 +1,553 @@
-{% extends 'base.html' %}
-
-{%block content %}
-  <div class="main-content" style="min-height: 874px;">
-
-    <!-- dashboard hedline -->
-    <section class="section">
-      <div class="section-header">
-        <h1>Dashboard</h1>
-        <div class="section-header-breadcrumb">
-          <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-        </div>
+{% extends 'base.html' %} {%block content %}
+<div class="main-content" style="min-height: 874px">
+  <!-- dashboard hedline -->
+  <section class="section">
+    <div class="section-header">
+      <h1>Dashboard</h1>
+      <div class="section-header-breadcrumb">
+        <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
       </div>
-    </section> 
+    </div>
+  </section>
 
-    <!-- dashboard content title - > 자사 제품 목록 -->
-    <section class="section">
-      <div class="section-header">
-        <h1>자사 제품 목록</h1>
-        <div class="section-header-breadcrumb">
+  <!-- dashboard content title - > 자사 제품 목록 -->
+  <section class="section">
+    <div class="section-header">
+      <h1>자사 제품 목록</h1>
+      <div class="section-header-breadcrumb"></div>
+    </div>
+  </section>
+
+  <!-- dashboard table-->
+  <section class="section">
+    <div class="section-content">
+      <table id="dashboard_total_list" class="table table-condensed">
+        <div class="table100-head">
+          <thead>
+            <tr class="row100 head">
+              <th class="cell100 column1">순번</th>
+              <th class="cell100 column3">이미지</th>
+              <th class="cell100 column2">상품명</th>
+              <th class="cell100 column3">상품코드</th>
+              <th class="cell100 column4">매칭 키워드</th>
+              <th class="cell100 column5">브랜드</th>
+              <th class="cell100 column6">담당자</th>
+              <th class="cell100 column7">네이버코드</th>
+              <th class="cell100 column8">네이버URL</th>
+              <th class="cell100 column9">쿠팡URL</th>
+              <th class="cell100 column9">분석하기</th>
+            </tr>
+          </thead>
         </div>
-      </div>
-    </section> 
 
-    <!-- dashboard table-->
-    <section class="section">
-      <div class="section-content">
+        <div class="table100-body js-pscroll">
+          {% for list in Query %}
+          <tr class="row100 body">
+            <td class="cell100 column1">{{list.id}}</td>
+            <td class="cell100 column3">
+              <img src="{{list.image}}" style="width: 50px; height: 50px" />
+            </td>
+            <td class="cell100 column2">
+              <a
+                href="{% url 'dashboardapp:review_dashboard' %}  "
+                target="_blank"
+                >{{list.pd_name}}</a
+              >
+            </td>
+            <td class="cell100 column3">{{list.pd_code}}</td>
+            <td class="cell100 column4">{{list.pd_keyword}}</td>
+            <td class="cell100 column5">{{list.pd_brand}}</td>
+            <td class="cell100 column6">{{list.pd_manager}}</td>
+            <td class="cell100 column7">{{list.nv_code}}</td>
+            <td class="cell100 column8">
+              <a href="{{list.nv_url}}">링크</a>
+            </td>
+            <td class="cell100 column9">
+              <a href="{{list.cp_url}}">링크</a>
+            </td>
+            <td class="cell100 column9">
+              <input type="submit" value="분석하기" />
+            </td>
+          </tr>
+          {% endfor %}
+        </div>
+      </table>
+    </div>
+  </section>
 
-        <table id="dashboard_total_list" class="table table-condensed">
+  <!-- dashboard content title - > 매출 그래프 -->
+  <section class="section">
+    <div class="section-header">
+      <h1>매출 그래프</h1>
+      <div class="section-header-breadcrumb"></div>
+    </div>
+  </section>
+
+  <!-- dashboard chart content-->
+  <section class="section">
+    <div class="section-content">
+      <h1 class="hedline_title">일별 매출 그래프</h1>
+      <canvas id="daychart" style="width: 100%; height: 600px"></canvas>
+      <h1 class="hedline_title">주별 매출 그래프</h1>
+      <canvas id="weekchart" style="width: 100%; height: 600px"></canvas>
+      <h1 class="hedline_title">월별 매출 그래프</h1>
+      <canvas id="mchart" style="width: 100%; height: 600px"></canvas>
+    </div>
+  </section>
+
+  <!-- dashboard title - > 제품 리스트  -->
+  <section class="section">
+    <div class="section-header">
+      <h1>제품 리스트</h1>
+      <div class="section-header-breadcrumb"></div>
+    </div>
+  </section>
+
+  <!-- 네이버 -->
+  <!-- 내용 -->
+  <section class="section">
+    <div class="section-header">
+      <div style="width: 100%; display: flex; flex-direction: column">
+        <img
+          src="/static/assets/img/naver_new.png"
+          style="width: 100px; height: 22px"
+        />
+        <table
+          id="dashboard_total_list"
+          class="table table-condensed"
+          style="width: 100%; margin-top: 20px"
+        >
           <div class="table100-head">
-              <thead>
-                  <tr class="row100 head">
-                      <th class="cell100 column1">순번</th>
-                      <th class="cell100 column3">이미지</th>
-                      <th class="cell100 column2">상품명</th>
-                      <th class="cell100 column3">상품코드</th>
-                      <th class="cell100 column4">매칭 키워드</th>
-                      <th class="cell100 column5">브랜드</th>
-                      <th class="cell100 column6">담당자</th>
-                      <th class="cell100 column7">네이버코드</th>
-                      <th class="cell100 column8">네이버URL</th>
-                      <th class="cell100 column9">쿠팡URL</th>
-                      <th class="cell100 column9">분석하기</th>
-                  </tr>
-              </thead>
+            <thead>
+              <tr class="row100 head">
+                <th class="cell100 column1 th_center">품절제품</th>
+                <th class="cell100 column3 th_center">평점 4점 리스트</th>
+                <th class="cell100 column2 th_center">
+                  검색순위 5위 이내 리스트
+                </th>
+                <th class="cell100 column3 th_center">최저가 변동 리스트</th>
+                <th class="cell100 column4 th_center">
+                  검색수 급상승한 키워드 (3배 이상)
+                </th>
+                <th class="cell100 column5 th_center">리뷰가 없는 상품</th>
+              </tr>
+            </thead>
           </div>
 
           <div class="table100-body js-pscroll">
-              {% for list in Query %}
-                  <tr class="row100 body">
-                      <td class="cell100 column1">{{list.id}}</td>
-                      <td class="cell100 column3"><img src='{{list.image}}' style="width :50px; height : 50px;"/></td>
-                      <td class="cell100 column2"><a href="{% url 'dashboardapp:review_dashboard' %}  " target="_blank">{{list.pd_name}}</a></td>
-                      <td class="cell100 column3 ">{{list.pd_code}}</td>
-                      <td class="cell100 column4 ">{{list.pd_keyword}}</td>
-                      <td class="cell100 column5">{{list.pd_brand}}</td>
-                      <td class="cell100 column6">{{list.pd_manager}}</td>
-                      <td class="cell100 column7">{{list.nv_code}}</td>
-                      <td class="cell100 column8">
-                          <a href='{{list.nv_url}}'>링크</a>
-                      </td>
-                      <td class="cell100 column9">
-                          <a href='{{list.cp_url}}'>링크</a>
-                      </td>
-                      <td class="cell100 column9">
-                        <input type="submit" value="분석하기">
-                    </td>
-                  </tr>
-              {% endfor %}
+            <tr class="row100 body">
+              <td class="cell100 column1 th_center">
+                <input
+                  type="button"
+                  value="조회하기"
+                  onclick="Sold_out_nv();"
+                />
+              </td>
+              <td class="cell100 column3 th_center">
+                <input type="button" value="조회하기" onclick="grade_nv();" />
+              </td>
+              <td class="cell100 column2 th_center">
+                <input
+                  type="button"
+                  value="조회하기"
+                  onclick="ranking_top_five_nv();"
+                />
+              </td>
+              <td class="cell100 column3 th_center">
+                <input
+                  type="button"
+                  value="조회하기"
+                  onclick="lowest_price_nv();"
+                />
+              </td>
+              <td class="cell100 column4 th_center">
+                <input
+                  type="button"
+                  value="조회하기"
+                  onclick="ranking_up_nv();"
+                />
+              </td>
+              <td class="cell100 column5 th_center">
+                <input
+                  type="button"
+                  value="조회하기"
+                  onclick="review_lowest_nv();"
+                />
+              </td>
+            </tr>
           </div>
         </table>
-
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- dashboard content title - > 매출 그래프 -->
-    <section class="section">
-      <div class="section-header">
-        <h1>매출 그래프</h1>
-        <div class="section-header-breadcrumb">
-        </div>
+  <!-- 쿠팡 -->
+  <!-- 제목 -->
+  <section class="section">
+    <div class="section-header">
+      <img
+        src="/static/assets/img/coupang_logo.png"
+        style="width: 100px; height: 23px"
+      />
+      <div class="section-header-breadcrumb"></div>
+    </div>
+  </section>
+  <!-- 내용 -->
+  <section class="section">
+    <div class="section-header">
+      <div style="width: 100%">
+        <table
+          id="dashboard_total_list"
+          class="table table-condensed"
+          style="width: 100%; margin-top: 20px"
+        >
+          <div class="table100-head">
+            <thead>
+              <tr class="row100 head">
+                <th class="cell100 column1 th_center">품절제품</th>
+                <th class="cell100 column3 th_center">평점 4점 리스트</th>
+                <th class="cell100 column2 th_center">
+                  검색순위 5위 이내 리스트
+                </th>
+                <th class="cell100 column3 th_center">최저가 변동 리스트</th>
+                <th class="cell100 column4 th_center">
+                  검색수 급상승한 키워드 (3배 이상)
+                </th>
+                <th class="cell100 column5 th_center">리뷰가 없는 상품</th>
+              </tr>
+            </thead>
+          </div>
+
+          <div class="table100-body js-pscroll">
+            <tr class="row100 body">
+              <th class="cell100 column1 th_center">
+                <input
+                  type="button"
+                  value="조회하기"
+                  onclick="Sold_out_cp();"
+                />
+              </th>
+              <th class="cell100 column3 th_center">
+                <input type="button" value="조회하기" onclick="grade_cp();" />
+              </th>
+              <th class="cell100 column2 th_center">
+                <input
+                  type="button"
+                  value="조회하기"
+                  onclick="ranking_top_five_cp();"
+                />
+              </th>
+              <th class="cell100 column3 th_center">
+                <input
+                  type="button"
+                  value="조회하기"
+                  onclick="lowest_price_cp();"
+                />
+              </th>
+              <th class="cell100 column4 th_center">
+                <input
+                  type="button"
+                  value="조회하기"
+                  onclick="ranking_up_cp();"
+                />
+              </th>
+              <th class="cell100 column5 th_center">
+                <input
+                  type="button"
+                  value="조회하기"
+                  onclick="review_lowest_cp();"
+                />
+              </th>
+            </tr>
+          </div>
+        </table>
       </div>
-    </section>
+    </div>
+  </section>
+</div>
 
-    <!-- dashboard chart content-->
-    <section class="section">
-        <div class="section-content">
-          <h1 class ="hedline_title">일별 매출 그래프</h1>
-          <canvas id="daychart" style="width : 100%; height : 600px;"></canvas>
-          <h1 class ="hedline_title">주별 매출 그래프</h1>
-          <canvas id="weekchart" style="width : 100%; height : 600px;"></canvas>
-          <h1 class ="hedline_title">월별 매출 그래프</h1>
-          <canvas id="mchart" style="width : 100%; height : 600px; "></canvas>
-        </div>
-    </section>
-
-    <!-- dashboard title - > 제품 리스트  -->
-    <section class="section">
-      <div class="section-header">
-        <h1>제품 리스트</h1>
-        <div class="section-header-breadcrumb">
-        </div>
-      </div>
-    </section>
-
-
-    <!-- 네이버 -->
-    <!-- 제목 -->
-    <section class="section">
-      <div class="section-header">
-        <img src="/static/assets/img/naver.png" style="width : 100px; height : 40px;">
-        <div class="section-header-breadcrumb">
-        </div>
-      </div>
-    </section>
-    <!-- 내용 -->
-    <section class="section">
-      <div class="section-header">
-
-        <div style="width: 100%;" >
-
-          <table id="dashboard_total_list" class="table table-condensed" style="width: 100%; margin-top: 20px;">
-            <div class="table100-head">
-                <thead>
-                    <tr class="row100 head">
-                        <th class="cell100 column1 th_center">품절제품</th>
-                        <th class="cell100 column3 th_center">평점 4점 리스트</th>
-                        <th class="cell100 column2 th_center">검색순위 5위 이내 리스트</th>
-                        <th class="cell100 column3 th_center">최저가 변동 리스트</th>
-                        <th class="cell100 column4 th_center">검색수 급상승한 키워드 (3배 이상)</th>
-                        <th class="cell100 column5 th_center">리뷰가 없는 상품</th>
-                    </tr>
-                </thead>
-            </div>
-  
-            <div class="table100-body js-pscroll">
-                    <tr class="row100 body">
-                      <td class="cell100 column1 th_center"><input type="button" value="조회하기" onclick="Sold_out_nv();" /></td>
-                      <td class="cell100 column3 th_center"><input type="button" value="조회하기" onclick="grade_nv();" /></td>
-                      <td class="cell100 column2 th_center"><input type="button" value="조회하기" onclick="ranking_top_five_nv();" /></td>
-                      <td class="cell100 column3 th_center"><input type="button" value="조회하기" onclick="lowest_price_nv();" /></td>
-                      <td class="cell100 column4 th_center"><input type="button" value="조회하기" onclick="ranking_up_nv();" /></td>
-                      <td class="cell100 column5 th_center"><input type="button" value="조회하기" onclick="review_lowest_nv();" /></td>
-                    </tr>
-            </div>
-          </table>
-
-        </div>
-
-
-   
-      </div>
-
-    
-
-     
-    </section>
-
-
-
-    <!-- 쿠팡 -->
-    <!-- 제목 -->
-    <section class="section">
-      <div class="section-header">
-        <img src="/static/assets/img/coupang.png" style="width : 100px; height : 40px;">
-        <div class="section-header-breadcrumb">
-        </div>
-      </div>
-    </section>
-    <!-- 내용 -->
-    <section class="section">
-      <div class="section-header">
-
-        <div style="width: 100%;" >
-  
-          <table id="dashboard_total_list" class="table table-condensed" style="width: 100%; margin-top: 20px;">
-            <div class="table100-head">
-                <thead>
-                    <tr class="row100 head">
-                        <th class="cell100 column1 th_center">품절제품</th>
-                        <th class="cell100 column3 th_center">평점 4점 리스트</th>
-                        <th class="cell100 column2 th_center">검색순위 5위 이내 리스트</th>
-                        <th class="cell100 column3 th_center">최저가 변동 리스트</th>
-                        <th class="cell100 column4 th_center">검색수 급상승한 키워드 (3배 이상)</th>
-                        <th class="cell100 column5 th_center">리뷰가 없는 상품</th>
-                    </tr>
-                </thead>
-            </div>
-  
-            <div class="table100-body js-pscroll">
-                    <tr class="row100 body">
-                      <th class="cell100 column1 th_center"><input type="button" value="조회하기" onclick="Sold_out_cp();" /></th>
-                      <th class="cell100 column3 th_center"><input type="button" value="조회하기" onclick="grade_cp();" /></th>
-                      <th class="cell100 column2 th_center"><input type="button" value="조회하기" onclick="ranking_top_five_cp();" /></th>
-                      <th class="cell100 column3 th_center"><input type="button" value="조회하기" onclick="lowest_price_cp();" /></th>
-                      <th class="cell100 column4 th_center"><input type="button" value="조회하기" onclick="ranking_up_cp();" /></th>
-                      <th class="cell100 column5 th_center"><input type="button" value="조회하기" onclick="review_lowest_cp();" /></th>
-                    </tr>
-            </div>
-          </table>
-
-        </div>
-
-
-   
-      </div>
-
-    
-
-     
-    </section>
-  </div>
-
-
-{%endblock%}
-
-{%block script %}
+{%endblock%} {%block script %}
 <script>
   var options = {
-  type: 'line',
-  data: {
-    labels: ["00시", "01시", "02시", "03시", "04시", "05시","06시","07시","08시", "09시", "10시", "11시", "12시", "13시","14시","15시","16시","17시","18시","19시","20시","21시","22시","23시"],
-    datasets: [
-	    {
-	      label: 'A 제품',
-          borderColor: 'rgb(255, 0, 0)',
-	      data: [1, 7, 8, 5, 2, 3, 10,1, 7, 8, 5, 2, 3, 10,1, 7, 8, 5, 2, 3, 10,5,9,1],
-      	  borderWidth: 1,
-          backgroundColor : 'transparent',
-        lineTension : 0,  
+    type: "line",
+    data: {
+      labels: [
+        "00시",
+        "01시",
+        "02시",
+        "03시",
+        "04시",
+        "05시",
+        "06시",
+        "07시",
+        "08시",
+        "09시",
+        "10시",
+        "11시",
+        "12시",
+        "13시",
+        "14시",
+        "15시",
+        "16시",
+        "17시",
+        "18시",
+        "19시",
+        "20시",
+        "21시",
+        "22시",
+        "23시",
+      ],
+      datasets: [
+        {
+          label: "A 제품",
+          borderColor: "rgb(255, 0, 0)",
+          data: [
+            1, 7, 8, 5, 2, 3, 10, 1, 7, 8, 5, 2, 3, 10, 1, 7, 8, 5, 2, 3, 10, 5,
+            9, 1,
+          ],
+          borderWidth: 1,
+          backgroundColor: "transparent",
+          lineTension: 0,
+        },
+        {
+          label: "B 제품",
+          borderColor: "rgb(34, 177, 76)",
+          data: [
+            10, 3, 2, 5, 3, 9, 2, 10, 3, 2, 5, 3, 9, 2, 10, 3, 2, 5, 3, 9, 2, 1,
+            9, 10,
+          ],
+          borderWidth: 1,
+          backgroundColor: "transparent",
+          lineTension: 0,
+        },
+      ],
+    },
 
-          
-    	},
-      {
-	    label: 'B 제품',
-        borderColor: 'rgb(34, 177, 76)',
-	    data: [10, 3, 2, 5, 3, 9, 2,10, 3, 2, 5, 3, 9, 2,10, 3, 2, 5, 3, 9, 2,1,9,10],
-      	borderWidth: 1,
-        backgroundColor : 'transparent',
-        lineTension : 0,  
-    	},
-      
-		]
-  },
- 
-  options: {
-       responsive: false,
-        
-  	scales: {
-    	yAxes: [{
-        ticks: {
-		reverse: true,
-        max : 10,
-        min : 1,
-        
-        
-        
-       
-          
-        }
-      }],
-
-
-    }
-  }
-};
-
-var ctx = document.getElementById('daychart').getContext('2d');
-
-//new Chart(ctx, options);
-var myLineChart = Chart.Line(ctx, options);	
-
-   //변경 데이터 선언
-	 var reData = {"data":[10, 8, 5, 8, 8, 12 ]};
-   //데이터 변경 
-		function changeData(chart, data) {		
-			var new_data = data.data;
-			chart.data.datasets.push({
-          data : new_data,
-          borderWidth : 2 //선굵기
-			  });
-		    // console.dir(chart.data.datasets);
-		    chart.update();
-		}
-    //데이터 삭제
-    function removeData(chart, data) {
-		    chart.data.datasets.pop({
-		       	data : data
-		    });
-		   // console.log(chart.data);
-		    chart.update();
-		}
-
-
-/* dashboard chart function*/
-/* week */  
-
-var options1 = {
-  type: 'line',
-  data: {
-    labels: ["월요일","화요일","수요일","목요일","금요일","토요일","일요일"],
-    datasets: [
-	    {
-	      label: 'A 제품',
-          borderColor: 'rgb(255, 0, 0)',
-	      data: [1, 7, 8, 5, 2, 3, 10],
-      	  borderWidth: 1,
-          backgroundColor : 'transparent',
-        lineTension : 0,  
-
-          
-    	},
-      {
-	    label: 'B 제품',
-        borderColor: 'rgb(34, 177, 76)',
-	    data: [10, 3, 2, 5, 3, 9, 2],
-      	borderWidth: 1,
-        backgroundColor : 'transparent',
-        lineTension : 0,  
-    	},
-      
-		]
-  },
- 
-  options: {
-       responsive: false,
-        
-  	scales: {
-    	yAxes: [{
-        ticks: {
-		reverse: true,
-        max : 10,
-        min : 1,
-        
-        
-        
-       
-          
-        }
-      }],
-
-
-    }
-  }
-};
-
-var ctx1 = document.getElementById('weekchart').getContext('2d');
-
-//new Chart(ctx, options);
-var myLineChart1 = Chart.Line(ctx1, options1);	
-
-   //변경 데이터 선언
-	 var reData = {"data":[10, 8, 5, 8, 8, 12 ]};
-   //데이터 변경 
-		function changeData(chart, data) {		
-			var new_data = data.data;
-			chart.data.datasets.push({
-          data : new_data,
-          borderWidth : 2 //선굵기
-			  });
-		    // console.dir(chart.data.datasets);
-		    chart.update();
-		}
-    //데이터 삭제
-    function removeData(chart, data) {
-		    chart.data.datasets.pop({
-		       	data : data
-		    });
-		   // console.log(chart.data);
-		    chart.update();
-		}
-
-/* dashboard chart function*/
-/* m */  
-
-var options2 = {
-  type: 'line',
-  data: {
-    labels: ["1알", "2일", "3일", "4일", "5일","6일","7일","8일", "9일", "10일", "11일", "12일", "13일","14일","15알","16일","17일","18일","19일","20일","21일","22일","23일","24일","25일","26일","27일","28일","29일","30일"],
-    datasets: [
-	    {
-	      label: 'A 제품',
-          borderColor: 'rgb(255, 0, 0)',
-	      data: [1, 7, 8, 5, 2, 3, 10,1, 7, 8, 5, 2, 3, 10,1, 7, 8, 5, 2, 3, 10,5,9,1,5, 2, 3, 10,5,9,1],
-      	  borderWidth: 1,
-          backgroundColor : 'transparent',
-        lineTension : 0,  
-
-          
-    	},
-      {
-	    label: 'B 제품',
-        borderColor: 'rgb(34, 177, 76)',
-	    data: [10, 3, 2, 5, 3, 9, 2,10, 3, 2, 5, 3, 9, 2,10, 3, 2, 5, 3, 9, 2,1,9,10,5, 3, 9, 2,1,9,10],
-      	borderWidth: 1,
-        backgroundColor : 'transparent',
-        lineTension : 0,  
-    	},
-      
-		]
-  },
-  options: {
+    options: {
       responsive: false,
-  	scales: {
-    	yAxes: [{
-        ticks: {
-		reverse: true,
-        max : 10,
-        min : 1,
-        
-       
-          
-        }
-      }]
-    }
+
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              reverse: true,
+              max: 10,
+              min: 1,
+            },
+          },
+        ],
+      },
+    },
+  };
+
+  var ctx = document.getElementById("daychart").getContext("2d");
+
+  //new Chart(ctx, options);
+  var myLineChart = Chart.Line(ctx, options);
+
+  //변경 데이터 선언
+  var reData = { data: [10, 8, 5, 8, 8, 12] };
+  //데이터 변경
+  function changeData(chart, data) {
+    var new_data = data.data;
+    chart.data.datasets.push({
+      data: new_data,
+      borderWidth: 2, //선굵기
+    });
+    // console.dir(chart.data.datasets);
+    chart.update();
   }
-};
+  //데이터 삭제
+  function removeData(chart, data) {
+    chart.data.datasets.pop({
+      data: data,
+    });
+    // console.log(chart.data);
+    chart.update();
+  }
 
-var ctx2 = document.getElementById('mchart').getContext('2d');
+  /* dashboard chart function*/
+  /* week */
 
-//new Chart(ctx, options);
-var myLineChart2 = Chart.Line(ctx2, options2);	
+  var options1 = {
+    type: "line",
+    data: {
+      labels: [
+        "월요일",
+        "화요일",
+        "수요일",
+        "목요일",
+        "금요일",
+        "토요일",
+        "일요일",
+      ],
+      datasets: [
+        {
+          label: "A 제품",
+          borderColor: "rgb(255, 0, 0)",
+          data: [1, 7, 8, 5, 2, 3, 10],
+          borderWidth: 1,
+          backgroundColor: "transparent",
+          lineTension: 0,
+        },
+        {
+          label: "B 제품",
+          borderColor: "rgb(34, 177, 76)",
+          data: [10, 3, 2, 5, 3, 9, 2],
+          borderWidth: 1,
+          backgroundColor: "transparent",
+          lineTension: 0,
+        },
+      ],
+    },
 
-   //변경 데이터 선언
-	 var reData = {"data":[10, 8, 5, 8, 8, 12 ]};
-   //데이터 변경 
-		function changeData(chart, data) {		
-			var new_data = data.data;
-			chart.data.datasets.push({
-          data : new_data,
-          borderWidth : 2 //선굵기
-			  });
-		    // console.dir(chart.data.datasets);
-		    chart.update();
-		}
-    //데이터 삭제
-    function removeData(chart, data) {
-		    chart.data.datasets.pop({
-		       	data : data
-		    });
-		   // console.log(chart.data);
-		    chart.update();
-		}
+    options: {
+      responsive: false,
 
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              reverse: true,
+              max: 10,
+              min: 1,
+            },
+          },
+        ],
+      },
+    },
+  };
+
+  var ctx1 = document.getElementById("weekchart").getContext("2d");
+
+  //new Chart(ctx, options);
+  var myLineChart1 = Chart.Line(ctx1, options1);
+
+  //변경 데이터 선언
+  var reData = { data: [10, 8, 5, 8, 8, 12] };
+  //데이터 변경
+  function changeData(chart, data) {
+    var new_data = data.data;
+    chart.data.datasets.push({
+      data: new_data,
+      borderWidth: 2, //선굵기
+    });
+    // console.dir(chart.data.datasets);
+    chart.update();
+  }
+  //데이터 삭제
+  function removeData(chart, data) {
+    chart.data.datasets.pop({
+      data: data,
+    });
+    // console.log(chart.data);
+    chart.update();
+  }
+
+  /* dashboard chart function*/
+  /* m */
+
+  var options2 = {
+    type: "line",
+    data: {
+      labels: [
+        "1알",
+        "2일",
+        "3일",
+        "4일",
+        "5일",
+        "6일",
+        "7일",
+        "8일",
+        "9일",
+        "10일",
+        "11일",
+        "12일",
+        "13일",
+        "14일",
+        "15알",
+        "16일",
+        "17일",
+        "18일",
+        "19일",
+        "20일",
+        "21일",
+        "22일",
+        "23일",
+        "24일",
+        "25일",
+        "26일",
+        "27일",
+        "28일",
+        "29일",
+        "30일",
+      ],
+      datasets: [
+        {
+          label: "A 제품",
+          borderColor: "rgb(255, 0, 0)",
+          data: [
+            1, 7, 8, 5, 2, 3, 10, 1, 7, 8, 5, 2, 3, 10, 1, 7, 8, 5, 2, 3, 10, 5,
+            9, 1, 5, 2, 3, 10, 5, 9, 1,
+          ],
+          borderWidth: 1,
+          backgroundColor: "transparent",
+          lineTension: 0,
+        },
+        {
+          label: "B 제품",
+          borderColor: "rgb(34, 177, 76)",
+          data: [
+            10, 3, 2, 5, 3, 9, 2, 10, 3, 2, 5, 3, 9, 2, 10, 3, 2, 5, 3, 9, 2, 1,
+            9, 10, 5, 3, 9, 2, 1, 9, 10,
+          ],
+          borderWidth: 1,
+          backgroundColor: "transparent",
+          lineTension: 0,
+        },
+      ],
+    },
+    options: {
+      responsive: false,
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              reverse: true,
+              max: 10,
+              min: 1,
+            },
+          },
+        ],
+      },
+    },
+  };
+
+  var ctx2 = document.getElementById("mchart").getContext("2d");
+
+  //new Chart(ctx, options);
+  var myLineChart2 = Chart.Line(ctx2, options2);
+
+  //변경 데이터 선언
+  var reData = { data: [10, 8, 5, 8, 8, 12] };
+  //데이터 변경
+  function changeData(chart, data) {
+    var new_data = data.data;
+    chart.data.datasets.push({
+      data: new_data,
+      borderWidth: 2, //선굵기
+    });
+    // console.dir(chart.data.datasets);
+    chart.update();
+  }
+  //데이터 삭제
+  function removeData(chart, data) {
+    chart.data.datasets.pop({
+      data: data,
+    });
+    // console.log(chart.data);
+    chart.update();
+  }
 </script>
 
 {%endblock%}
-
-
-
-
-
-
-
- 
