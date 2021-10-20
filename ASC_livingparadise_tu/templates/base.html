@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'head.html'%}
+
+<body style="background : rgb(248,248,248);">
+    <div id="app" >
+        <div class="main-wrapper" > 
+          <div class="navbar-bg"></div>
+            {% include 'header.html'%}
+
+            {%block content %}{%endblock%}
+
+            {% include 'main_side_bar.html'%}
+            
+        </div>
+    </div>
+{%block script %}{%endblock%}
+{% include 'script_parts.html'%}
+{% include 'footer.html'%}
+
+</body>
+</html>

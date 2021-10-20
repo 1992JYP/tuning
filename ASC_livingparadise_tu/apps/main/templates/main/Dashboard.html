@@ -1,0 +1,1707 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block script %}
+
+{% endblock %}
+{% block title %}생활낙원{% endblock %}
+{%block web_title%}<title>트랜드 추이</title>{%endblock%}
+
+
+{% block 'side_bar.html'  %} 
+
+<div class="main-sidebar">
+    <aside id="sidebar-wrapper">
+        <div class="sidebar-brand">
+            <a href="{% url 'main' %}">생활낙원
+            </a>
+        </div>
+        <div class="sidebar-brand sidebar-brand-sm">
+            <a href="index.html">St</a>
+        </div>
+        <ul class="sidebar-menu list" >
+            <li id ="first_main_menu">
+                <a href="{% url 'main' %} " class="nav-link has-dropdown">
+                    <i class="fas fa-fire"></i>
+                    <span>DASHBOARD</span>
+                </a>
+            </li>
+            <li>
+                <a href={% url 'keyword' %} class="nav-link has-dropdown" data-toggle="dropdown">
+                <i class="fas fa-columns"></i>
+                <span>랭킹분석</span>
+                </a>
+            </li>           
+            <li>
+                <a href={% url 'review' %} class="nav-link">
+                    <i class="far fa-square"></i>
+                    <span>키워드 분석</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'Dashboard' %} " class="nav-link has-dropdown color_change">
+                    <i class="fas fa-th"></i>
+                    <span>트랜드 추이</span>
+                </a>
+                <ul class="dropdown-menu"></ul>
+            </li>
+
+
+        </ul>
+    </aside>
+</div>
+
+
+
+
+{%endblock%}
+
+
+
+
+{% block content %}
+
+<!-- 최상단 메뉴-->
+<div class="section-header" style="height : 72px;background-color : white;position :absolute;width: 1653px;left: 250px;top: 0px;" >
+    <h3 style="position :absolute; margin : 25px 20px;font-weight :bold">트랜드 추이</h3>
+    <div class="section-header-button" style="float :right;margin: 25px 20px;">
+        <div class="section-header-breadcrumb">
+            <div class="breadcrumb-item active" style="float : left;">
+                <a href="/">분석</a>
+            </div>
+            <div class="breadcrumb-item" style="float : left;">트랜드 추이</div>
+
+        </div>
+    </div>
+</div>
+
+<div style="margin-top : 25px; height : 80px; background-color :white;">
+<!-- 네용 넣기 -->
+</div> 
+
+{% comment %} <div style="margin-top : 0px; height : 400px; background-color :white;">
+<h2 style="position :absolute; margin : 25px 20px;font-weight :bold">가장 변동이 심한 제품</h2>
+
+<!-- 네용 넣기 -->
+
+
+</div>  {% endcomment %}
+
+
+
+
+
+
+<div style="margin-top : 25px; height : 2200px; background-color :white;">
+  
+     
+
+
+<div class="tab_content" style="width:1200px;top: 130px;  position :absolute; left : 1040px;">
+
+
+
+
+
+
+
+
+	<input type="radio" name="tabmenu" id="tab01" checked>
+	<label for="tab01" style = "border-radius : 10px; position :absolute;"> 쇼핑몰 순위</label>
+
+	<input type="radio" name="tabmenu" id="tab02">
+	<label for="tab02" style="border-radius : 10px;position :absolute;left: 116px;">평점</label>
+
+	<input type="radio" name="tabmenu" id="tab03">
+	<label for="tab03" style="border-radius : 10px;position :absolute;left: 190px;">긍부정비율</label>
+    
+    <input type="radio" name="tabmenu" id="tab04">
+	<label for="tab04" style="border-radius : 10px;position :absolute;left: 307px;">가격</label>
+    
+    <input type="radio" name="tabmenu" id="tab05">
+	<label for="tab05" style="border-radius : 10px;position :absolute;left: 383px;">검색수</label>
+    
+
+	<div class="conbox con1" style="margin-top: 70px;position :absolute;width: 1510px; height : 1700px;">
+              <div style="margin-top: 2px;height : 400px;">
+                    <h2 style="position :absolute;margin : 45px 20px;font-weight :bold;top: 6px;">가장 변동이 심한 제품</h2>
+
+
+                    <div style="height : 300px;width : 100%;position :absolute;top: 72px;">
+                    
+                    <!-- 네용 넣기 -->
+
+                         <div class="slide">
+                              <ul>
+
+
+                                   {%for shop_ranking in rankingchange_top%}
+                                   <li>
+                                   
+                                   <div style = "width : 600px; height  :  240px; float : left; margin : 30px;">
+                                   
+                                   
+                                   <div style = "width : 200px; height : 180px;  margin : 20px; float :left;">
+                                   
+                                   
+                                    <img src="{{shop_ranking.12}}" style = "position :absolute; width : 200px; height : 200px; top : 36px;"/>
+                                   
+                                   </div>
+                                   <div style = "width : 300px; height : 180px;  margin : 20px; float : left;">
+                                   
+
+                                   <div style = "margin-top : 60px; ">
+                                   <h4 style = "font-weight : bold; font-size : 25px; ">{{shop_ranking.6}}</h4>
+                                   <div style = "font-weight : bold; font-size : 20px; ">평점 변화 : {{shop_ranking.16}}점 {{shop_ranking.1}}점</div>
+                                   </div>
+                                   
+                                   
+                                   
+                                   </div>
+
+
+
+                                   </div>
+
+
+
+                                   <div style = "width : 600px; height  :  240px;  float : left; margin : 30px;">
+                                   
+                                   <div style = "width : 200px; height : 180px;  margin : 20px; float :left;">
+                                   
+                                   
+                                    <img src="{{shop_ranking.12}}" style = "position :absolute; width : 200px; height : 200px; top : 36px;"/>
+                                   
+                                   
+                                   </div>
+                                   <div style = "width : 300px; height : 180px;  margin : 20px; float : left;">
+                                   
+                                   
+                                   <div style = "margin-top : 60px; ">
+                                   <h4 style = "font-weight : bold; font-size : 25px; ">{{shop_ranking.6}}</h4>
+                                   <div style = "font-weight : bold; font-size : 20px; ">평점 변화 : {{shop_ranking.16}}점 {{shop_ranking.1}}점</div>
+                                   </div>
+                                   
+                                   
+                                   
+                                   </div>
+                                   
+                                   
+                                   </div>
+                                   
+                                   </li>
+                                   {%endfor%}
+
+
+
+                              </ul>
+                         </div>
+                    
+                    </div>
+
+               </div> 
+    <h2 style="padding :25px 20px; font-weight : bold;">쇼핑몰 순위</h2>
+
+
+            <div style="padding : 30px;padding-top : 15px;padding-left : 60px;position :absolute;top: 432px;left: 130px;">
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">전일순위</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">현제순위</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">변동폭</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">제품명</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">소비자가</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">평점</a>
+            </div>       
+
+
+        <table id="example25" class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;margin-left: 20px;margin-right: 30px;">
+            <div class="table100-head">
+
+                <thead>
+                    <tr class="row100 head">
+                        <th class="cell100 column1">전일순위
+                        </th>
+                        <th class="cell100 column2">현제순위</th>
+                        <th class="cell100 column3">변동폭</th>
+                        <th class="cell100 column4">이미지</th>
+                        <th class="cell100 column5">제품명</th>
+                        <th class="cell100 column6">소비지가</th>
+                        <th class="cell100 column7">평점</th>
+
+                    </tr>
+                </thead>
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+
+
+                
+               {%for shop_ranking in rankingchange%}
+            <tr class="row100 body">
+                    <td class="cell100 column1">{{shop_ranking.16}} </td>   <!--어제순위-->
+                    <td class="cell100 column2">{{shop_ranking.1}}</td>    <!--오늘순위-->
+                    {% if shop_ranking.2 == 9999 %}
+                    <td class="cell100 column3">!NEW!</td>    <!--순위변동-->
+                    {% else %}
+                    <td class="cell100 column3">{{shop_ranking.17}}</td>    <!--순위변동-->
+                    {% endif %}
+                    <td class="cell100 column4"><img src='{{shop_ranking.12}}' style="width :50px; height : 50px;"/></td>     <!--이미지-->
+                    <td class="cell100 column5">{{shop_ranking.6}}</td>    <!--제품명-->
+                    <td class="cell100 column6">{{shop_ranking.10}}</td>    <!--가격-->
+                    <td class="cell100 column7">{{shop_ranking.14}}</td>   <!--평점-->
+            </tr>
+                
+               {%endfor%}
+
+
+
+
+
+                
+
+
+            </div>
+        </table>
+    
+    </div> 
+	<div class="conbox con2" style="margin-top: 70px;position :absolute;width: 1510px;  ">
+                  <div style="margin-top: 2px;height : 400px;">
+                    <h2 style="position :absolute;margin : 45px 20px;font-weight :bold;top: 6px;">평점 변동이 심한 제품</h2>
+
+
+                    <div style="height : 300px;width : 100%;position :absolute;top: 72px;">
+                    
+                    
+
+
+                    <!-- 슬라이드 넣기 시작 -->
+
+                         <div class="slide">
+                              <ul>
+                                   <li>
+                                   
+                                   <div style = "width : 600px; height  :  240px; float : left; margin : 30px;">
+                                   
+                                   
+                                   <div style = "width : 200px; height : 180px;  margin : 20px; float :left;">
+                                   
+                                   
+                                    <img src="{% static 'assets/img/LiPACO.png' %}" style = "position :absolute; width : 200px; height : 200px; top : 36px;"/>
+                                   
+                                   </div>
+                                   <div style = "width : 300px; height : 180px;  margin : 20px; float : left;">
+                                   
+
+                                   <div style = "margin-top : 60px; ">
+                                   <h4 style = "font-weight : bold; font-size : 25px; ">직사각형 무광 쓰래기통</h4>
+                                   <div style = "font-weight : bold; font-size : 20px; ">평점 변화 : -3점 -5점</div>
+                                   </div>
+                                   
+                                   
+                                   
+                                   </div>
+
+
+
+                                   </div>
+
+
+
+                                   <div style = "width : 600px; height  :  240px;  float : left; margin : 30px;">
+                                   
+                                   <div style = "width : 200px; height : 180px;  margin : 20px; float :left;">
+                                   
+                                   
+                                    <img src="{% static 'assets/img/LiPACO.png' %}" style = "position :absolute; width : 200px; height : 200px; top : 36px;"/>
+                                   
+                                   
+                                   </div>
+                                   <div style = "width : 300px; height : 180px;  margin : 20px; float : left;">
+                                   
+                                   
+                                   <div style = "margin-top : 60px; ">
+                                   <h4 style = "font-weight : bold; font-size : 25px; ">직사각형 무광 쓰래기통</h4>
+                                   <div style = "font-weight : bold; font-size : 20px; ">평점 변화 : -3점 -5점</div>
+                                   </div>
+                                   
+                                   
+                                   
+                                   </div>
+                                   
+                                   
+                                   </div>
+                                   
+                                   </li>
+                                   <li>
+                                   
+                                   <div style = "width : 600px; height  :  240px;  float : left; margin : 30px;">
+                                   
+                                   
+                                   <div style = "width : 200px; height : 180px;  margin : 20px; float :left;">
+                                   
+                                   
+                                    <img src="{% static 'assets/img/LiPACO.png' %}" style = " width : 200px; height : 200px; top : 30px;"/>
+                                   
+                                   </div>
+                                   <div style = "width : 300px; height : 180px; margin : 20px; float : left;">
+                                   
+
+                                   <div style = "margin-top : 60px; ">
+                                   <h4 style = "font-weight : bold; font-size : 25px; ">직사각형 무광 쓰래기통</h4>
+                                   <div style = "font-weight : bold; font-size : 20px; ">평점 변화 : -3점 -5점</div>
+                                   </div>
+                                   
+                                   
+                                   
+                                   </div>
+
+
+
+                                   </div>
+
+
+
+                                   <div style = "width : 600px; height  :  240px;  float : left; margin : 30px;">
+                                   
+                                   <div style = "width : 200px; height : 180px;  margin : 20px; float :left;">
+                                   
+                                   
+                                    <img src="{% static 'assets/img/LiPACO.png' %}" style = " width : 200px; height : 200px; top : 36px;"/>
+                                   
+                                   
+                                   </div>
+                                   <div style = "width : 300px; height : 180px;  margin : 20px; float : left;">
+                                   
+                                   
+                                   <div style = "margin-top : 60px; ">
+                                   <h4 style = "font-weight : bold; font-size : 25px; ">직사각형 무광 쓰래기통</h4>
+                                   <div style = "font-weight : bold; font-size : 20px; ">평점 변화 : -3점 -5점</div>
+                                   </div>
+                                   
+                                   
+                                   
+                                   </div>
+                                   
+                                   
+                                   </div>                                 
+                                   
+                                   
+                                   </li>
+                                   <li>
+                                   
+                                   <div style = "width : 600px; height  :  240px;  float : left; margin : 30px;">
+                                   
+                                   
+                                   <div style = "width : 200px; height : 180px;  margin : 20px; float :left;">
+                                   
+                                   
+                                    <img src="{% static 'assets/img/LiPACO.png' %}" style = " width : 200px; height : 200px; top : 36px;"/>
+                                   
+                                   </div>
+                                   <div style = "width : 300px; height : 180px;  margin : 20px; float : left;">
+                                   
+
+                                   <div style = "margin-top : 60px; ">
+                                   <h4 style = "font-weight : bold; font-size : 25px; ">직사각형 무광 쓰래기통</h4>
+                                   <div style = "font-weight : bold; font-size : 20px; ">평점 변화 : -3점 -5점</div>
+                                   </div>
+                                   
+                                   
+                                   
+                                   </div>
+
+
+
+                                   </div>
+
+
+
+                                   <div style = "width : 600px; height  :  240px;  float : left; margin : 30px;">
+                                   
+                                   <div style = "width : 200px; height : 180px;  margin : 20px; float :left;">
+                                   
+                                   
+                                    <img src="{% static 'assets/img/LiPACO.png' %}" style = " width : 200px; height : 200px; top : 36px;"/>
+                                   
+                                   
+                                   </div>
+                                   <div style = "width : 300px; height : 180px;  margin : 20px; float : left;">
+                                   
+                                   
+                                   <div style = "margin-top : 60px; ">
+                                   <h4 style = "font-weight : bold; font-size : 25px; ">직사각형 무광 쓰래기통</h4>
+                                   <div style = "font-weight : bold; font-size : 20px; ">평점 변화 : -3점 -5점</div>
+                                   </div>
+                                   
+                                   
+                                   
+                                   </div>
+                                   
+                                   
+                                   </div>
+                                   
+                                   
+                                   </li>  
+                              </ul>
+                         </div>
+
+
+                    <!-- 슬라이드 넣기 끝 -->
+
+
+
+
+
+
+                    
+                    </div>
+
+               </div>
+
+
+
+
+        <h2 style="padding :25px 20px; font-weight : bold;">평점</h2>
+
+                    <div style="padding : 30px;padding-top : 15px;padding-left : 0px;position :absolute;top: 432px;left: 110px;">
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">이전 평점</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">현제 평점</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">변동폭</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">제품명</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">소비자가</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">검색수</a>
+            </div> 
+        <table id="example21" class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;margin-left: 20px;margin-right: 30px;">
+            <div class="table100-head">
+
+                <thead>
+                    <tr class="row100 head">
+                        <th class="cell100 column1">이전 평점
+                        </th>
+                        <th class="cell100 column2">현재 평점</th>
+                        <th class="cell100 column3">변동폭</th>
+                        <th class="cell100 column4">이미지</th>
+                        <th class="cell100 column5">제품명</th>
+                        <th class="cell100 column6">소비지가</th>
+                        <th class="cell100 column7">검색수</th>
+
+                    </tr>
+                </thead>
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+				<tr class="row100 body">
+                    <td class="cell100 column1">5</td>
+                    <td class="cell100 column2">4</td>
+                    <td class="cell100 column3">-9</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <td class="cell100 column7">1324</td>
+
+				</tr>
+                				<tr class="row100 body">
+                    <td class="cell100 column1">5</td>
+                    <td class="cell100 column2">4</td>
+                    <td class="cell100 column3">-9</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <td class="cell100 column7">1324</td>
+
+				</tr>
+                				<tr class="row100 body">
+                    <td class="cell100 column1">5</td>
+                    <td class="cell100 column2">4</td>
+                    <td class="cell100 column3">-9</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <td class="cell100 column7">1324</td>
+
+				</tr>
+                				<tr class="row100 body">
+                    <td class="cell100 column1">5</td>
+                    <td class="cell100 column2">4</td>
+                    <td class="cell100 column3">-9</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <td class="cell100 column7">1324</td>
+
+				</tr>
+                				<tr class="row100 body">
+                    <td class="cell100 column1">5</td>
+                    <td class="cell100 column2">4</td>
+                    <td class="cell100 column3">-9</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <td class="cell100 column7">1324</td>
+
+				</tr>
+                				<tr class="row100 body">
+                    <td class="cell100 column1">5</td>
+                    <td class="cell100 column2">4</td>
+                    <td class="cell100 column3">-9</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <td class="cell100 column7">1324</td>
+
+				</tr>
+                				<tr class="row100 body">
+                    <td class="cell100 column1">5</td>
+                    <td class="cell100 column2">4</td>
+                    <td class="cell100 column3">-9</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <td class="cell100 column7">1324</td>
+
+				</tr>
+                				<tr class="row100 body">
+                    <td class="cell100 column1">5</td>
+                    <td class="cell100 column2">4</td>
+                    <td class="cell100 column3">-9</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <td class="cell100 column7">1324</td>
+
+				</tr>
+                				<tr class="row100 body">
+                    <td class="cell100 column1">5</td>
+                    <td class="cell100 column2">4</td>
+                    <td class="cell100 column3">-9</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <td class="cell100 column7">1324</td>
+
+				</tr>
+                				<tr class="row100 body">
+                    <td class="cell100 column1">5</td>
+                    <td class="cell100 column2">4</td>
+                    <td class="cell100 column3">-9</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <td class="cell100 column7">1324</td>
+
+				</tr>
+                				<tr class="row100 body">
+                    <td class="cell100 column1">5</td>
+                    <td class="cell100 column2">4</td>
+                    <td class="cell100 column3">-9</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <td class="cell100 column7">1324</td>
+
+				</tr>
+                				<tr class="row100 body">
+                    <td class="cell100 column1">5</td>
+                    <td class="cell100 column2">4</td>
+                    <td class="cell100 column3">-9</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <td class="cell100 column7">1324</td>
+
+				</tr>
+                				<tr class="row100 body">
+                    <td class="cell100 column1">5</td>
+                    <td class="cell100 column2">4</td>
+                    <td class="cell100 column3">-9</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <td class="cell100 column7">1324</td>
+
+				</tr>
+                				<tr class="row100 body">
+                    <td class="cell100 column1">5</td>
+                    <td class="cell100 column2">4</td>
+                    <td class="cell100 column3">-9</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <td class="cell100 column7">1324</td>
+
+				</tr>
+                				<tr class="row100 body">
+                    <td class="cell100 column1">5</td>
+                    <td class="cell100 column2">4</td>
+                    <td class="cell100 column3">-9</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <td class="cell100 column7">1324</td>
+
+				</tr>
+                				<tr class="row100 body">
+                    <td class="cell100 column1">5</td>
+                    <td class="cell100 column2">4</td>
+                    <td class="cell100 column3">-9</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <td class="cell100 column7">1324</td>
+
+				</tr>
+                				<tr class="row100 body">
+                    <td class="cell100 column1">5</td>
+                    <td class="cell100 column2">4</td>
+                    <td class="cell100 column3">-9</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <td class="cell100 column7">1324</td>
+
+				</tr>
+ 
+
+                
+
+
+            </div>
+        </table>
+    
+    </div>
+	<div class="conbox con3" style="margin-top: 70px;position :absolute;width: 1550px;">
+            <h2 style="padding :25px 20px; font-weight : bold;">긍부정 비율</h2>
+
+          <div style="padding : 30px;padding-top : 15px;padding-left : 0px;position :absolute;top: 30px;left: 190px;">
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">순위</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">제품명</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">소비자가</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">제품명</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">긍정</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">준긍정</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">부정</a>
+          </div> 
+
+
+        <table id="example22" class="table table-striped table-bordered" style="width: 1300px;margin-top: 15px;margin-left: 20px;margin-right: 30px;">
+            <div class="table100-head">
+
+                <thead>
+                    <tr class="row100 head">
+                        <th class="cell100 column1">순위
+                        </th>
+                        <th class="cell100 column4">이미지</th>
+                        <th class="cell100 column3">제품명</th>
+                        <th class="cell100 column4">소비자가</th>
+                        <th class="cell100 column5">긍정</th>
+                        <th class="cell100 column6">준긍정</th>
+                        <th class="cell100 column7">중립</th>
+                        <th class="cell100 column6">준부정</th>
+                        <th class="cell100 column7">부정</th>
+
+                    </tr>
+                </thead>
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column3">아가드 초음파 키재기</td>
+                    <td class="cell100 column4">소비자가</td>
+                    <td class="cell100 column4">5(30)</td>
+                    <td class="cell100 column4">4(20)</td>
+                    <td class="cell100 column4">3(5)</td>
+                    <th class="cell100 column4">2(15)</th>
+                    <th class="cell100 column4">1(30)</th>
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column3">아가드 초음파 키재기</td>
+                    <td class="cell100 column4">소비자가</td>
+                    <td class="cell100 column4">5(30)</td>
+                    <td class="cell100 column4">4(20)</td>
+                    <td class="cell100 column4">3(5)</td>
+                    <th class="cell100 column4">2(15)</th>
+                    <th class="cell100 column4">1(30)</th>
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column3">아가드 초음파 키재기</td>
+                    <td class="cell100 column4">소비자가</td>
+                    <td class="cell100 column4">5(30)</td>
+                    <td class="cell100 column4">4(20)</td>
+                    <td class="cell100 column4">3(5)</td>
+                    <th class="cell100 column4">2(15)</th>
+                    <th class="cell100 column4">1(30)</th>
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column3">아가드 초음파 키재기</td>
+                    <td class="cell100 column4">소비자가</td>
+                    <td class="cell100 column4">5(30)</td>
+                    <td class="cell100 column4">4(20)</td>
+                    <td class="cell100 column4">3(5)</td>
+                    <th class="cell100 column4">2(15)</th>
+                    <th class="cell100 column4">1(30)</th>
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column3">아가드 초음파 키재기</td>
+                    <td class="cell100 column4">소비자가</td>
+                    <td class="cell100 column4">5(30)</td>
+                    <td class="cell100 column4">4(20)</td>
+                    <td class="cell100 column4">3(5)</td>
+                    <th class="cell100 column4">2(15)</th>
+                    <th class="cell100 column4">1(30)</th>
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column3">아가드 초음파 키재기</td>
+                    <td class="cell100 column4">소비자가</td>
+                    <td class="cell100 column4">5(30)</td>
+                    <td class="cell100 column4">4(20)</td>
+                    <td class="cell100 column4">3(5)</td>
+                    <th class="cell100 column4">2(15)</th>
+                    <th class="cell100 column4">1(30)</th>
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column3">아가드 초음파 키재기</td>
+                    <td class="cell100 column4">소비자가</td>
+                    <td class="cell100 column4">5(30)</td>
+                    <td class="cell100 column4">4(20)</td>
+                    <td class="cell100 column4">3(5)</td>
+                    <th class="cell100 column4">2(15)</th>
+                    <th class="cell100 column4">1(30)</th>
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column3">아가드 초음파 키재기</td>
+                    <td class="cell100 column4">소비자가</td>
+                    <td class="cell100 column4">5(30)</td>
+                    <td class="cell100 column4">4(20)</td>
+                    <td class="cell100 column4">3(5)</td>
+                    <th class="cell100 column4">2(15)</th>
+                    <th class="cell100 column4">1(30)</th>
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column3">아가드 초음파 키재기</td>
+                    <td class="cell100 column4">소비자가</td>
+                    <td class="cell100 column4">5(30)</td>
+                    <td class="cell100 column4">4(20)</td>
+                    <td class="cell100 column4">3(5)</td>
+                    <th class="cell100 column4">2(15)</th>
+                    <th class="cell100 column4">1(30)</th>
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column3">아가드 초음파 키재기</td>
+                    <td class="cell100 column4">소비자가</td>
+                    <td class="cell100 column4">5(30)</td>
+                    <td class="cell100 column4">4(20)</td>
+                    <td class="cell100 column4">3(5)</td>
+                    <th class="cell100 column4">2(15)</th>
+                    <th class="cell100 column4">1(30)</th>
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column3">아가드 초음파 키재기</td>
+                    <td class="cell100 column4">소비자가</td>
+                    <td class="cell100 column4">5(30)</td>
+                    <td class="cell100 column4">4(20)</td>
+                    <td class="cell100 column4">3(5)</td>
+                    <th class="cell100 column4">2(15)</th>
+                    <th class="cell100 column4">1(30)</th>
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column3">아가드 초음파 키재기</td>
+                    <td class="cell100 column4">소비자가</td>
+                    <td class="cell100 column4">5(30)</td>
+                    <td class="cell100 column4">4(20)</td>
+                    <td class="cell100 column4">3(5)</td>
+                    <th class="cell100 column4">2(15)</th>
+                    <th class="cell100 column4">1(30)</th>
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column3">아가드 초음파 키재기</td>
+                    <td class="cell100 column4">소비자가</td>
+                    <td class="cell100 column4">5(30)</td>
+                    <td class="cell100 column4">4(20)</td>
+                    <td class="cell100 column4">3(5)</td>
+                    <th class="cell100 column4">2(15)</th>
+                    <th class="cell100 column4">1(30)</th>
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column3">아가드 초음파 키재기</td>
+                    <td class="cell100 column4">소비자가</td>
+                    <td class="cell100 column4">5(30)</td>
+                    <td class="cell100 column4">4(20)</td>
+                    <td class="cell100 column4">3(5)</td>
+                    <th class="cell100 column4">2(15)</th>
+                    <th class="cell100 column4">1(30)</th>
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column3">아가드 초음파 키재기</td>
+                    <td class="cell100 column4">소비자가</td>
+                    <td class="cell100 column4">5(30)</td>
+                    <td class="cell100 column4">4(20)</td>
+                    <td class="cell100 column4">3(5)</td>
+                    <th class="cell100 column4">2(15)</th>
+                    <th class="cell100 column4">1(30)</th>
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column3">아가드 초음파 키재기</td>
+                    <td class="cell100 column4">소비자가</td>
+                    <td class="cell100 column4">5(30)</td>
+                    <td class="cell100 column4">4(20)</td>
+                    <td class="cell100 column4">3(5)</td>
+                    <th class="cell100 column4">2(15)</th>
+                    <th class="cell100 column4">1(30)</th>
+
+				</tr>
+
+ 
+
+                
+
+
+            </div>
+        </table>
+
+
+          <h2 style="padding :25px 20px; font-weight : bold;">긍부정 그래프</h2>
+            <canvas id="chartJSContainer2" style="width : 600px; height : 325px;"></canvas>
+    </div>
+    <div class="conbox con4" style="margin-top: 70px;position :absolute;width: 1510px;">
+            <h2 style="padding :25px 20px;font-weight : bold;">가격</h2>
+
+          <div style="padding : 30px;padding-top : 15px;padding-left : 0px;position :absolute;top: 30px;left: 100px;">
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">이전 가격</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">현재 가격</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">변동폭</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">제품명</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">소비자가</a>
+          </div> 
+
+            
+        <table id="example23" class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;margin-left: 20px;margin-right: 30px;">
+            <div class="table100-head">
+
+                <thead>
+                    <tr class="row100 head">
+                        <th class="cell100 column1">이전 가격
+                        </th>
+                        <th class="cell100 column2">현재 가격</th>
+                        <th class="cell100 column3">변동폭</th>
+                        <th class="cell100 column4">이미지</th>
+                        <th class="cell100 column5">제품명</th>
+                        <th class="cell100 column6">소비지가</th>ㄴ
+                    </tr>
+                </thead>
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+				<tr class="row100 body">
+                    <td class="cell100 column1">8450</td>
+                    <td class="cell100 column2">8450</td>
+                    <td class="cell100 column3">-19600</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                 
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">8450</td>
+                    <td class="cell100 column2">8450</td>
+                    <td class="cell100 column3">-19600</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                 
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">8450</td>
+                    <td class="cell100 column2">8450</td>
+                    <td class="cell100 column3">-19600</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                 
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">8450</td>
+                    <td class="cell100 column2">8450</td>
+                    <td class="cell100 column3">-19600</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                 
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">8450</td>
+                    <td class="cell100 column2">8450</td>
+                    <td class="cell100 column3">-19600</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                 
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">8450</td>
+                    <td class="cell100 column2">8450</td>
+                    <td class="cell100 column3">-19600</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                 
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">8450</td>
+                    <td class="cell100 column2">8450</td>
+                    <td class="cell100 column3">-19600</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                 
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">8450</td>
+                    <td class="cell100 column2">8450</td>
+                    <td class="cell100 column3">-19600</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                 
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">8450</td>
+                    <td class="cell100 column2">8450</td>
+                    <td class="cell100 column3">-19600</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                 
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">8450</td>
+                    <td class="cell100 column2">8450</td>
+                    <td class="cell100 column3">-19600</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                 
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">8450</td>
+                    <td class="cell100 column2">8450</td>
+                    <td class="cell100 column3">-19600</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                 
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">8450</td>
+                    <td class="cell100 column2">8450</td>
+                    <td class="cell100 column3">-19600</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                 
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">8450</td>
+                    <td class="cell100 column2">8450</td>
+                    <td class="cell100 column3">-19600</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                 
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">8450</td>
+                    <td class="cell100 column2">8450</td>
+                    <td class="cell100 column3">-19600</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                 
+
+				</tr>
+                    				<tr class="row100 body">
+                    <td class="cell100 column1">8450</td>
+                    <td class="cell100 column2">8450</td>
+                    <td class="cell100 column3">-19600</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                 
+
+				</tr>
+
+
+
+                
+
+
+            </div>
+        </table>
+
+
+
+
+               <div style="margin-top: 50px;height : 900px;">
+     
+                    <h2 style=" margin : 25px 20px;font-weight :bold">서열 10위 제품 변동 추이 그래프</h2> 
+                    <canvas id="chartJSContainer" style="width : 600px; height : 345px; margin-top : 5px;"></canvas>
+
+               </div> 
+
+        
+    
+    
+    </div>
+    <div class="conbox con5" style="margin-top: 70px;position :absolute;width: 1510px;">
+              <div style="padding : 30px;padding-top : 15px;padding-left : 0px;position :absolute;top: 30px;left: 110px;">
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">이전 검색수</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">현제 검색수</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">변동폭</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">제품명</a>
+                      <a href="#" class="btn btn-primary" style = "margin-left : 20px;">소비자가</a>
+
+          </div> 
+
+
+            <h2 style="padding :25px 20px; font-weight : bold;">검색 수 </h2>
+        <table id="example24" class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;margin-left: 20px;margin-right: 30px;">
+            <div class="table100-head">
+
+                <thead>
+                    <tr class="row100 head">
+                        <th class="cell100 column1">이전 검색수 
+                        </th>
+                        <th class="cell100 column2">현제 검색수 </th>
+                        <th class="cell100 column3">변동폭</th>
+                        <th class="cell100 column4">이미지</th>
+                        <th class="cell100 column5">제품명</th>
+                        <th class="cell100 column6">소비지가</th>
+                         <th class="cell100 column6">분석</th>
+
+                    </tr>
+                </thead>
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+				<tr class="row100 body">
+                    <td class="cell100 column1">11200</td>
+                    <td class="cell100 column2">10900</td>
+                    <td class="cell100 column3">-22100</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <th class="cell100 column6"><input type="checkbox" name="color" value="blue"> </th>
+
+				</tr>
+                    
+				<tr class="row100 body">
+                    <td class="cell100 column1">11200</td>
+                    <td class="cell100 column2">10900</td>
+                    <td class="cell100 column3">-22100</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <th class="cell100 column6"><input type="checkbox" name="color" value="blue"> </th>
+
+				</tr>
+                    
+				<tr class="row100 body">
+                    <td class="cell100 column1">11200</td>
+                    <td class="cell100 column2">10900</td>
+                    <td class="cell100 column3">-22100</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <th class="cell100 column6"><input type="checkbox" name="color" value="blue"> </th>
+
+				</tr>
+                    
+				<tr class="row100 body">
+                    <td class="cell100 column1">11200</td>
+                    <td class="cell100 column2">10900</td>
+                    <td class="cell100 column3">-22100</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <th class="cell100 column6"><input type="checkbox" name="color" value="blue"> </th>
+
+				</tr>
+                    
+				<tr class="row100 body">
+                    <td class="cell100 column1">11200</td>
+                    <td class="cell100 column2">10900</td>
+                    <td class="cell100 column3">-22100</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <th class="cell100 column6"><input type="checkbox" name="color" value="blue"> </th>
+
+				</tr>
+                    
+				<tr class="row100 body">
+                    <td class="cell100 column1">11200</td>
+                    <td class="cell100 column2">10900</td>
+                    <td class="cell100 column3">-22100</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <th class="cell100 column6"><input type="checkbox" name="color" value="blue"> </th>
+
+				</tr>
+                    
+				<tr class="row100 body">
+                    <td class="cell100 column1">11200</td>
+                    <td class="cell100 column2">10900</td>
+                    <td class="cell100 column3">-22100</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <th class="cell100 column6"><input type="checkbox" name="color" value="blue"> </th>
+
+				</tr>
+                    
+				<tr class="row100 body">
+                    <td class="cell100 column1">11200</td>
+                    <td class="cell100 column2">10900</td>
+                    <td class="cell100 column3">-22100</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <th class="cell100 column6"><input type="checkbox" name="color" value="blue"> </th>
+
+				</tr>
+                    
+				<tr class="row100 body">
+                    <td class="cell100 column1">11200</td>
+                    <td class="cell100 column2">10900</td>
+                    <td class="cell100 column3">-22100</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <th class="cell100 column6"><input type="checkbox" name="color" value="blue"> </th>
+
+				</tr>
+                    
+				<tr class="row100 body">
+                    <td class="cell100 column1">11200</td>
+                    <td class="cell100 column2">10900</td>
+                    <td class="cell100 column3">-22100</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <th class="cell100 column6"><input type="checkbox" name="color" value="blue"> </th>
+
+				</tr>
+                    
+				<tr class="row100 body">
+                    <td class="cell100 column1">11200</td>
+                    <td class="cell100 column2">10900</td>
+                    <td class="cell100 column3">-22100</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <th class="cell100 column6"><input type="checkbox" name="color" value="blue"> </th>
+
+				</tr>
+                    
+				<tr class="row100 body">
+                    <td class="cell100 column1">11200</td>
+                    <td class="cell100 column2">10900</td>
+                    <td class="cell100 column3">-22100</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <th class="cell100 column6"><input type="checkbox" name="color" value="blue"> </th>
+
+				</tr>
+                    
+				<tr class="row100 body">
+                    <td class="cell100 column1">11200</td>
+                    <td class="cell100 column2">10900</td>
+                    <td class="cell100 column3">-22100</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <th class="cell100 column6"><input type="checkbox" name="color" value="blue"> </th>
+
+				</tr>
+                    
+				<tr class="row100 body">
+                    <td class="cell100 column1">11200</td>
+                    <td class="cell100 column2">10900</td>
+                    <td class="cell100 column3">-22100</td>
+                    <td class="cell100 column4">[이미지]</td>
+                    <td class="cell100 column5">아가드 초음파 키재기</td>
+                    <td class="cell100 column6">8450</td>
+                    <th class="cell100 column6"><input type="checkbox" name="color" value="blue"> </th>
+
+				</tr>
+
+                
+
+
+            </div>
+        </table>
+    
+
+
+          <h2 style="padding :25px 20px; font-weight : bold;">검색어 변동 그래프</h2>
+          <canvas id="chartJSContainer1" style="width : 600px; height : 325px;"></canvas>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+</div>  
+
+
+
+
+
+{% endblock %}
+
+{% block foot_size%} <div class="main-content" style="width : 1900px !important; height : 2500px !important; top : 24px;">{% endblock %}
+{% block scripts %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+<script type="text/javascript">
+
+
+
+var options = {
+  type: 'line',
+  data: {
+    labels: ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일","일요일"],
+    datasets: [
+	    {
+	      label: '1위',
+       
+          borderColor: 'rgb(255, 0, 0)',
+	      data: [6, 4, 6, 10, 8, 10, 14],
+      	borderWidth: 1,
+           backgroundColor : 'transparent', 
+           lineTension : 0, 
+    	},
+        {
+	      label: '2위',
+               
+          borderColor: 'rgb(255, 127, 39)',
+	      data: [10, 3, 2, 5, 3, 19, 12],
+      	borderWidth: 1,
+           backgroundColor : 'transparent', 
+           lineTension : 0, 
+    	},
+                {
+	      label: '3위',
+               
+          borderColor: 'rgb(255, 255, 0)',
+	      data: [16, 12, 16, 10, 4, 10, 12],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',  
+           lineTension : 0,
+    	},
+                     {
+	      label: '4위',
+               
+          borderColor: 'rgb(0, 128, 0)',
+	      data: [10, 8, 10, 12, 10, 8, 4],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',  
+           lineTension : 0,
+    	},
+                              {
+	      label: '5위',
+               
+          borderColor: 'rgb(0, 0, 255)',
+	      data: [10, 4, 8, 20, 14, 8, 6],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',  
+           lineTension : 0,
+    	},
+                                       {
+	      label: '6위',
+               
+          borderColor: 'rgb(0, 64, 128)',
+	      data: [2, 12, 10, 16, 4, 12, 6],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',  
+           lineTension : 0,
+    	},
+
+                                                {
+	      label: '7위',
+               
+          borderColor: 'rgb(128, 0, 255)',
+	      data: [2, 12, 10, 16, 4, 12, 6],
+      	borderWidth: 1,
+           backgroundColor : 'transparent', 
+           lineTension : 0, 
+    	},
+
+                                                         {
+	      label: '8위',
+               
+          borderColor: 'rgb(255, 0, 255)',
+	      data: [16, 10, 4, 16, 10, 8, 4],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',  
+           lineTension : 0,
+    	},
+
+
+         
+                                                         {
+	      label: '9위',
+               
+          borderColor: 'rgb(128, 255, 255)',
+	      data: [4, 8, 12, 10, 16, 4, 10],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',  
+           lineTension : 0,
+    	},
+
+
+
+                                                                  {
+	      label: '10위',
+               
+          borderColor: 'rgb(64, 128, 128)',
+	      data: [4, 8, 12, 10, 16, 4, 10],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',  
+           lineTension : 0,
+    	},
+
+
+
+
+      
+		]
+  },
+  options: {
+  	scales: {
+    	yAxes: [{
+        ticks: {
+					reverse: false,
+          max : 18
+        }
+      }]
+    }
+  }
+};
+
+var ctx = document.getElementById('chartJSContainer').getContext('2d');
+
+//new Chart(ctx, options);
+var myLineChart = Chart.Line(ctx, options);	
+
+   //변경 데이터 선언
+	 var reData = {"data":[10, 8, 5, 8, 8, 12 ]};
+   //데이터 변경 
+		function changeData(chart, data) {		
+			var new_data = data.data;
+			chart.data.datasets.push({
+          data : new_data,
+          borderWidth : 2 //선굵기
+			  });
+		    // console.dir(chart.data.datasets);
+		    chart.update();
+		}
+    //데이터 삭제
+    function removeData(chart, data) {
+		    chart.data.datasets.pop({
+		       	data : data
+		    });
+		   // console.log(chart.data);
+		    chart.update();
+}
+
+/////////////////////////////////////////////////////////////////
+
+
+
+var options1 = {
+  type: 'bar',
+  data: {
+    labels: ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일","일요일"],
+    datasets: [
+	    {
+	      label: '네이버_1위',
+       
+          borderColor: 'rgb(34, 177, 76)',
+	      data: [6, 4, 6, 10, 8, 10, 14],
+      	borderWidth: 1,
+           backgroundColor : 'transparent', 
+           lineTension : 0, 
+    	},
+        {
+	      label: '네이버_2위',
+               
+          borderColor: 'rgb(34, 177, 76)',
+	      data: [10, 3, 2, 5, 3, 19, 12],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',  
+           lineTension : 0,
+    	},
+                {
+	      label: '네이버_3위',
+               
+          borderColor: 'rgb(34, 177, 76)',
+	      data: [16, 12, 16, 10, 4, 10, 12],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',  
+           lineTension : 0,
+    	},
+
+      
+		]
+  },
+  options: {
+  	scales: {
+    	yAxes: [{
+        ticks: {
+					reverse: false,
+          max : 18
+        }
+      }]
+    }
+  }
+};
+
+var ctx1 = document.getElementById('chartJSContainer1').getContext('2d');
+
+//new Chart(ctx, options);
+var myLineChart1 = Chart.Line(ctx1, options1);	
+
+
+/////////////////////////////////////////////////////////////////
+var options2 = {
+  type: 'bar',
+  data: {
+    labels: ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일","일요일"],
+    datasets: [
+	    {
+	      label: '네이버_1위',
+       
+          borderColor: 'rgb(34, 177, 76)',
+	      data: [6, 4, 6, 10, 8, 10, 14],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',
+           lineTension : 0, 
+            
+    	},
+
+
+      
+		]
+  },
+  options: {
+  	scales: {
+    	yAxes: [{
+        ticks: {
+					reverse: false,
+          max : 18
+        }
+      }]
+    }
+  }
+};
+
+var ctx2 = document.getElementById('chartJSContainer2').getContext('2d');
+
+//new Chart(ctx, options);
+var myLineChart2 = Chart.Line(ctx2, options2);	
+
+
+
+
+
+
+
+
+$(document).ready(function() {
+    $('#example25').DataTable({
+	// 표시 건수기능 숨기기
+	lengthChange: false,
+	// 검색 기능 숨기기
+	searching: false,
+
+	// 정보 표시 숨기기
+	info: false,
+	// 페이징 기능 숨기기
+	paging: false
+      
+    });
+
+    
+});
+
+$(document).ready(function() {
+    $('#example21').DataTable({
+	// 표시 건수기능 숨기기
+	lengthChange: false,
+	// 검색 기능 숨기기
+	searching: false,
+
+	// 정보 표시 숨기기
+	info: false,
+	// 페이징 기능 숨기기
+	paging: false
+      
+    });
+
+    
+});
+
+
+$(document).ready(function() {
+    $('#example22').DataTable({
+	// 표시 건수기능 숨기기
+	lengthChange: false,
+	// 검색 기능 숨기기
+	searching: false,
+
+	// 정보 표시 숨기기
+	info: false,
+	// 페이징 기능 숨기기
+	paging: false
+      
+    });
+
+    
+});
+
+$(document).ready(function() {
+    $('#example23').DataTable({
+	// 표시 건수기능 숨기기
+	lengthChange: false,
+	// 검색 기능 숨기기
+	searching: false,
+
+	// 정보 표시 숨기기
+	info: false,
+	// 페이징 기능 숨기기
+	paging: false
+      
+    });
+
+    
+});
+
+$(document).ready(function() {
+    $('#example24').DataTable({
+	// 표시 건수기능 숨기기
+	lengthChange: false,
+	// 검색 기능 숨기기
+	searching: false,
+
+	// 정보 표시 숨기기
+	info: false,
+	// 페이징 기능 숨기기
+	paging: false
+      
+    });
+
+    
+});
+
+
+</script>
+
+
+ {%endblock%}

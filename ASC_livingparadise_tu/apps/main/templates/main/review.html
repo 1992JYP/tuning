@@ -1,0 +1,1022 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block script %}
+
+{% endblock %}
+
+{% block title %}생활낙원{% endblock %}
+{%block web_title%}<title>키워드 분석</title>{%endblock%}
+
+{% block 'side_bar.html'  %}
+
+<div class="main-sidebar">
+    <aside id="sidebar-wrapper">
+        <div class="sidebar-brand">
+            <a href="{% url 'main' %}">생활낙원
+            </a>
+        </div>
+        <div class="sidebar-brand sidebar-brand-sm">
+            <a href="index.html">St</a>
+        </div>
+        <ul class="sidebar-menu list" >
+            <li id ="first_main_menu">
+                <a href="{% url 'main' %} " class="nav-link has-dropdown">
+                    <i class="fas fa-fire"></i>
+                    <span>DASHBOARD</span>
+                </a>
+            </li>
+            <li>
+                <a href={% url 'keyword' %} class="nav-link has-dropdown" data-toggle="dropdown">
+                <i class="fas fa-columns"></i>
+                <span>랭킹분석</span>
+                </a>
+            </li>           
+            <li>
+                <a href={% url 'review' %} class="nav-link color_change">
+                    <i class="far fa-square"></i>
+                    <span>키워드 분석</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'Dashboard' %} " class="nav-link has-dropdown">
+                    <i class="fas fa-th"></i>
+                    <span>트랜드 추이</span>
+                </a>
+                <ul class="dropdown-menu"></ul>
+            </li>
+
+
+        </ul>
+    </aside>
+</div>
+
+
+ {%endblock%}
+
+
+{% block content %}
+
+<!-- 최상단 메뉴-->
+<div class="section-header" style="height : 72px;background-color : white;position :absolute;width: 1653px;left: 250px;top: 0px;" >
+    <h3 style="position :absolute; margin : 25px 20px;font-weight :bold">키워드 분석</h3>
+    <div class="section-header-button" style="float :right;margin: 25px 20px;">
+        <div class="section-header-breadcrumb">
+            <div class="breadcrumb-item active" style="float : left;">
+                <a href="/">분석</a>
+            </div>
+            <div class="breadcrumb-item" style="float : left;">키워드 분석</div>
+ 
+        </div>
+    </div>
+</div>
+
+
+<!-- 최 상단 서브 항목-->
+<div style="margin-top : 25px; height : 80px; background-color :white;">
+ <h2 style="padding-top : 5px;font-weight :bold;float : left;margin-left : 25px;margin-right: 560px;">네이버 검색 결과</h2>
+ <h2 style="padding-top : 5px; font-weight :bold;float : left;">쿠팡 검색 결과</h2>
+</div> 
+
+
+<!-- << 데이터 검색결과 >> 1. 키워드 검색결과 // 2. 자사제품 검색결과 // 3.타사제품 검색결과 -->
+<div style="margin-top : 25px; height : 1300px; background-color :white;">
+
+    <img
+        src="{% static 'assets/img/naver.png' %}"
+        style="width : 100px; height : 40px; margin : 25px;  margin-right : 680px;"/>
+    <img
+        src="{% static 'assets/img/coupang.png' %}"
+        style="width : 100px; height : 40px; "/>
+    <hr style="position: absolute;width: 1500px;left: 300px;margin-top: 0px;">
+
+        <!-- 시작-->
+
+        <div style="width : 100%; height : 420px; ">
+            <h3
+                style="padding-top : 5px;font-weight :bold;margin-left: 20px; margin-bottom : 20px;">
+                데이터 검색결과</h3>
+
+            <div style="width : 100%; height : 310px; ">
+
+                <div
+                    style="float : left; width : 720px; height : 310px;  padding : 22px; margin-right : 40px; margin-left : 50px;">
+
+                    <table
+                        id="example1"
+                        class="table table-striped table-bordered"
+                        style="margin-left: 0px;">
+                        <h4 style="margin-top: 0px;margin-bottom: 20px; font-weight : bold;"> * 키워드 검색결과</h4>
+                        <div class="table100-head">
+
+                            <thead>
+                                <tr class="row100 head">
+                                    <th class="cell100 column1">해당 키워드
+                                    </th>
+                                    <th class="cell100 column5">검색 수</th>
+                                    <th class="cell100 column2">등록 제품 숫자</th>
+                                    <th class="cell100 column3">예상 판매량</th>
+                                    <th class="cell100 column4">예상 판매액</th>
+
+                                </tr>
+                            </thead>
+
+                        </div>
+
+                        <div class="table100-body js-pscroll">
+
+                            <tr class="row100 body">
+                                <td class="cell100 column1">브레지어 세탁망</td>
+                                <td class="cell100 column5">211111</td>
+                                <td class="cell100 column2">1234</td>
+                                <td class="cell100 column3">공백</td>
+                                <td class="cell100 column4">공백</td>
+
+                            </tr>
+                            <tr class="row100 body">
+                                <td class="cell100 column1">브레지어 세탁망</td>
+                                <td class="cell100 column5">211111</td>
+                                <td class="cell100 column2">1234</td>
+                                <td class="cell100 column3">공백</td>
+                                <td class="cell100 column4">공백</td>
+
+                            </tr>
+                            <tr class="row100 body">
+                                <td class="cell100 column1">브레지어 세탁망</td>
+                                <td class="cell100 column5">211111</td>
+                                <td class="cell100 column2">1234</td>
+                                <td class="cell100 column3">공백</td>
+                                <td class="cell100 column4">공백</td>
+
+                            </tr>
+                        </div>
+                    </table>
+
+                </div>
+                <div style="float : left; width : 720px; height : 310px; padding : 22px;">
+
+                    <table
+                        id="example2"
+                        class="table table-striped table-bordered"
+                        style="margin-top: 39px; margin-left :0px;">
+                        <div class="table100-head">
+
+                            <thead>
+                                <tr class="row100 head">
+                                    <th class="cell100 column1">해당 키워드
+                                    </th>
+                                    <th class="cell100 column5">검색 수</th>
+                                    <th class="cell100 column2">등록 제품 숫자</th>
+                                    <th class="cell100 column3">예상 판매량</th>
+                                    <th class="cell100 column4">예상 판매액</th>
+
+                                </tr>
+                            </thead>
+
+                        </div>
+
+                        <div class="table100-body js-pscroll">
+
+                            <tr class="row100 body">
+                                <td class="cell100 column1">브레지어 세탁망</td>
+                                <td class="cell100 column5">211111</td>
+                                <td class="cell100 column2">1234</td>
+                                <td class="cell100 column3">공백</td>
+                                <td class="cell100 column4">공백</td>
+
+                            </tr>
+                            <tr class="row100 body">
+                                <td class="cell100 column1">브레지어 세탁망</td>
+                                <td class="cell100 column5">211111</td>
+                                <td class="cell100 column2">1234</td>
+                                <td class="cell100 column3">공백</td>
+                                <td class="cell100 column4">공백</td>
+
+                            </tr>
+                            <tr class="row100 body">
+                                <td class="cell100 column1">브레지어 세탁망</td>
+                                <td class="cell100 column5">211111</td>
+                                <td class="cell100 column2">1234</td>
+                                <td class="cell100 column3">공백</td>
+                                <td class="cell100 column4">공백</td>
+
+                            </tr>
+                        </div>
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- 끝-->
+
+        <!-- 시작-->
+        <div style="width : 100%; height : 380px; ">
+
+            <div style="width : 100%; height : 310px; ">
+
+                <div
+                    style="float : left; width : 720px; height : 310px; padding : 22px; margin-right : 40px; margin-left : 50px;">
+
+                    <table
+                        id="example3"
+                        class="table table-striped table-bordered"
+                        style="margin-left: 0px;">
+                        <h4 style="margin-top: 0px;margin-bottom: 20px; font-weight : bold;">* 자사제품 검색결과</h4>
+                        <div class="table100-head">
+
+                            <thead>
+                                <tr class="row100 head">
+                                    <th class="cell100 column1">해당 키워드
+                                    </th>
+                                    <th class="cell100 column5">검색 수</th>
+                                    <th class="cell100 column2">등록 제품 숫자</th>
+                                    <th class="cell100 column3">예상 판매량</th>
+                                    <th class="cell100 column4">예상 판매액</th>
+
+                                </tr>
+                            </thead>
+
+                        </div>
+
+                        <div class="table100-body js-pscroll">
+
+                            <tr class="row100 body">
+                                <td class="cell100 column1">브레지어 세탁망</td>
+                                <td class="cell100 column5">211111</td>
+                                <td class="cell100 column2">1234</td>
+                                <td class="cell100 column3">공백</td>
+                                <td class="cell100 column4">공백</td>
+
+                            </tr>
+                            <tr class="row100 body">
+                                <td class="cell100 column1">브레지어 세탁망</td>
+                                <td class="cell100 column5">211111</td>
+                                <td class="cell100 column2">1234</td>
+                                <td class="cell100 column3">공백</td>
+                                <td class="cell100 column4">공백</td>
+
+                            </tr>
+                            <tr class="row100 body">
+                                <td class="cell100 column1">브레지어 세탁망</td>
+                                <td class="cell100 column5">211111</td>
+                                <td class="cell100 column2">1234</td>
+                                <td class="cell100 column3">공백</td>
+                                <td class="cell100 column4">공백</td>
+
+                            </tr>
+                        </div>
+                    </table>
+
+                </div>
+                <div style="float : left; width : 720px; height : 310px;  padding : 22px;">
+
+                    <table
+                        id="example4"
+                        class="table table-striped table-bordered"
+                        style="margin-top: 39px; margin-left :0px;">
+                        <div class="table100-head">
+
+                            <thead>
+                                <tr class="row100 head">
+                                    <th class="cell100 column1">해당 키워드
+                                    </th>
+                                    <th class="cell100 column5">검색 수</th>
+                                    <th class="cell100 column2">등록 제품 숫자</th>
+                                    <th class="cell100 column3">예상 판매량</th>
+                                    <th class="cell100 column4">예상 판매액</th>
+
+                                </tr>
+                            </thead>
+
+                        </div>
+
+                        <div class="table100-body js-pscroll">
+
+                            <tr class="row100 body">
+                                <td class="cell100 column1">브레지어 세탁망</td>
+                                <td class="cell100 column5">211111</td>
+                                <td class="cell100 column2">1234</td>
+                                <td class="cell100 column3">공백</td>
+                                <td class="cell100 column4">공백</td>
+
+                            </tr>
+                            <tr class="row100 body">
+                                <td class="cell100 column1">브레지어 세탁망</td>
+                                <td class="cell100 column5">211111</td>
+                                <td class="cell100 column2">1234</td>
+                                <td class="cell100 column3">공백</td>
+                                <td class="cell100 column4">공백</td>
+
+                            </tr>
+                            <tr class="row100 body">
+                                <td class="cell100 column1">브레지어 세탁망</td>
+                                <td class="cell100 column5">211111</td>
+                                <td class="cell100 column2">1234</td>
+                                <td class="cell100 column3">공백</td>
+                                <td class="cell100 column4">공백</td>
+
+                            </tr>
+                        </div>
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- 끝-->
+
+        <!-- 시작-->
+        <div style="width : 100%; height : 420px; ">
+
+            <div style="width : 100%; height : 310px; ">
+
+                <div
+                    style="float : left; width : 720px; height : 310px;  padding : 22px; margin-right : 40px; margin-left : 50px;">
+
+                    <table
+                        id="example5"
+                        class="table table-striped table-bordered"
+                        style="margin-left: 0px;">
+                        <h4 style="margin-top: 0px;margin-bottom: 20px; font-weight: bold;">* 타사제품 검색결과</h4>
+                        <div class="table100-head">
+
+                            <thead>
+                                <tr class="row100 head">
+                                    <th class="cell100 column1">해당 키워드
+                                    </th>
+                                    <th class="cell100 column5">검색 수</th>
+                                    <th class="cell100 column2">등록 제품 숫자</th>
+                                    <th class="cell100 column3">예상 판매량</th>
+                                    <th class="cell100 column4">예상 판매액</th>
+
+                                </tr>
+                            </thead>
+
+                        </div>
+
+                        <div class="table100-body js-pscroll">
+
+                            <tr class="row100 body">
+                                <td class="cell100 column1">브레지어 세탁망</td>
+                                <td class="cell100 column5">211111</td>
+                                <td class="cell100 column2">1234</td>
+                                <td class="cell100 column3">공백</td>
+                                <td class="cell100 column4">공백</td>
+
+                            </tr>
+                            <tr class="row100 body">
+                                <td class="cell100 column1">브레지어 세탁망</td>
+                                <td class="cell100 column5">211111</td>
+                                <td class="cell100 column2">1234</td>
+                                <td class="cell100 column3">공백</td>
+                                <td class="cell100 column4">공백</td>
+
+                            </tr>
+                            <tr class="row100 body">
+                                <td class="cell100 column1">브레지어 세탁망</td>
+                                <td class="cell100 column5">211111</td>
+                                <td class="cell100 column2">1234</td>
+                                <td class="cell100 column3">공백</td>
+                                <td class="cell100 column4">공백</td>
+
+                            </tr>
+                        </div>
+                    </table>
+
+                </div>
+                <div style="float : left; width : 720px; height : 310px;  padding : 22px;">
+
+                    <table
+                        id="example6"
+                        class="table table-striped table-bordered"
+                        style="margin-top: 39px; margin-left :0px;">
+                        <div class="table100-head">
+
+                            <thead>
+                                <tr class="row100 head">
+                                    <th class="cell100 column1">해당 키워드
+                                    </th>
+                                    <th class="cell100 column5">검색 수</th>
+                                    <th class="cell100 column2">등록 제품 숫자</th>
+                                    <th class="cell100 column3">예상 판매량</th>
+                                    <th class="cell100 column4">예상 판매액</th>
+
+                                </tr>
+                            </thead>
+
+                        </div>
+
+                        <div class="table100-body js-pscroll">
+
+                            <tr class="row100 body">
+                                <td class="cell100 column1">브레지어 세탁망</td>
+                                <td class="cell100 column5">211111</td>
+                                <td class="cell100 column2">1234</td>
+                                <td class="cell100 column3">공백</td>
+                                <td class="cell100 column4">공백</td>
+
+                            </tr>
+                            <tr class="row100 body">
+                                <td class="cell100 column1">브레지어 세탁망</td>
+                                <td class="cell100 column5">211111</td>
+                                <td class="cell100 column2">1234</td>
+                                <td class="cell100 column3">공백</td>
+                                <td class="cell100 column4">공백</td>
+
+                            </tr>
+                            <tr class="row100 body">
+                                <td class="cell100 column1">브레지어 세탁망</td>
+                                <td class="cell100 column5">211111</td>
+                                <td class="cell100 column2">1234</td>
+                                <td class="cell100 column3">공백</td>
+                                <td class="cell100 column4">공백</td>
+
+                            </tr>
+                        </div>
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+ 
+
+</div>
+
+
+<!-- 검색어 추이 그래프-->
+<div style="margin-top : 25px; height : 670px; background-color :white;">
+    <h2 style="padding : 20px; padding-top : 30px; font-weight :bold">검색어 추이 그래프
+    </h2>
+
+    <div style="float :left; width  :760px; height : 500px; padding : 40px; margin-right : 20px; margin-left : 40px; ">
+        <img src="/static/assets/img/naver.png" style="width : 100px; height : 40px;">
+        
+        
+         <canvas id="chartJSContainer1" style="width : 600px; height : 325px;"></canvas>
+        
+        </div>
+        <div style="float :left; width  :710px; height : 500px; padding : 40px;  ">
+
+            <img src="/static/assets/img/coupang.png" style="width : 100px; height : 40px;">
+
+           <canvas id="chartJSContainer" style="width : 600px; height : 345px; margin-top : 5px;"></canvas>
+
+            </div>
+
+</div>
+
+
+<!-- 쿠팡 네이버 리뷰 그래프-->
+<div style="margin-top : 25px; height : 900px; background-color :white;">
+    <h2 style="padding : 20px; padding-top : 30px; font-weight :bold">네이버 / 쿠팡 리뷰 그래프
+    </h2>
+
+    <div style="float :left; width  :760px; height : 500px; padding : 40px; margin-right : 20px; margin-left : 40px; ">
+        <img src="/static/assets/img/naver.png" style="width : 100px; height : 40px;">
+        
+        
+
+        <canvas id="myChart" width="400" height="400"></canvas>
+
+         
+        
+        </div>
+        <div style="float :left; width  :710px; height : 500px; padding : 40px;  ">
+
+            <img src="/static/assets/img/coupang.png" style="width : 100px; height : 40px;">
+
+
+
+                <canvas id="myChart1" width="400" height="432"></canvas>
+
+
+
+            </div>
+
+</div>
+
+
+<!-- 피드백-->
+<div style="margin-top : 25px; height : 950px; background-color :white;">
+    <h2 style="padding : 20px; padding-top : 30px; font-weight :bold">피드백
+    </h2>
+
+    <div style="float :left; width  :760px; height : 500px; padding : 40px; margin-right : 20px; margin-left : 40px; ">
+        <h2 style = "font-weight : bold;"> 작성하기</h2>
+        
+        
+        <div class="form-group" style="margin-top: 50px;">
+                      <label>title</label>
+                      <input type="text" class="form-control">
+                    </div>
+
+
+        <div class="form-group">
+                      <label>content</label>
+                      <input type="text" class="form-control" style="height: 250px !important;">
+        </div>
+        
+        <div class="article-cta" style = "float : right;">
+                      <a href="" class="btn btn-primary">Read More</a>
+                    </div>
+         
+        
+        </div>
+        <div style="float :left; width  :710px; height : 500px; padding : 40px;  ">
+
+            <h2 style = "font-weight : bold;"> 타임라인</h2>
+
+                                    <table
+                        id="example7"
+                        class="table table-striped table-bordered"
+                        style="margin-left: 0px;">
+               
+                        <div class="table100-head">
+
+                            <thead>
+                                <tr class="row100 head">
+
+                                    <th class="cell100 column1">순번</th>
+                                    <th class="cell100 column3">제목</th>
+                                    <th class="cell100 column4">등록일</th>
+
+                                </tr>
+                            </thead>
+
+                        </div>
+
+                        <div class="table100-body js-pscroll">
+
+                            <tr class="row100 body">
+
+                                <td class="cell100 column1">1</td>
+                                <td class="cell100 column3">제목</td>
+                                <td class="cell100 column4">등록일</td>
+
+                            </tr>
+                            <tr class="row100 body">
+
+                                <td class="cell100 column1">2</td>
+                                <td class="cell100 column3">제목</td>
+                                <td class="cell100 column4">등록일</td>
+
+                            </tr>
+                            <tr class="row100 body">
+
+                                <td class="cell100 column1">3</td>
+                                <td class="cell100 column3">제목</td>
+                                <td class="cell100 column4">등록일</td>
+
+                            </tr>
+                                                        <tr class="row100 body">
+
+                                <td class="cell100 column1">4</td>
+                                <td class="cell100 column3">제목</td>
+                                <td class="cell100 column4">등록일</td>
+
+                            </tr>
+                                                        <tr class="row100 body">
+
+                                <td class="cell100 column1">5</td>
+                                <td class="cell100 column3">제목</td>
+                                <td class="cell100 column4">등록일</td>
+
+                            </tr>
+                                                        <tr class="row100 body">
+
+                                <td class="cell100 column1">6</td>
+                                <td class="cell100 column3">제목</td>
+                                <td class="cell100 column4">등록일</td>
+
+                            </tr>
+                                                        <tr class="row100 body">
+
+                                <td class="cell100 column1">7</td>
+                                <td class="cell100 column3">제목</td>
+                                <td class="cell100 column4">등록일</td>
+
+                            </tr>
+                                                        <tr class="row100 body">
+
+                                <td class="cell100 column1">8</td>
+                                <td class="cell100 column3">제목</td>
+                                <td class="cell100 column4">등록일</td>
+
+                            </tr>
+                                                        <tr class="row100 body">
+
+                                <td class="cell100 column1">9</td>
+                                <td class="cell100 column3">제목</td>
+                                <td class="cell100 column4">등록일</td>
+
+                            </tr>
+                                                        <tr class="row100 body">
+
+                                <td class="cell100 column1">10</td>
+                                <td class="cell100 column3">제목</td>
+                                <td class="cell100 column4">등록일</td>
+
+                            </tr>
+                                                        <tr class="row100 body">
+
+                                <td class="cell100 column1">11</td>
+                                <td class="cell100 column3">제목</td>
+                                <td class="cell100 column4">등록일</td>
+
+                            </tr>
+                                                        <tr class="row100 body">
+
+                                <td class="cell100 column1">12</td>
+                                <td class="cell100 column3">제목</td>
+                                <td class="cell100 column4">등록일</td>
+
+                            </tr>
+                        </div>
+                    </table>
+
+                
+
+
+
+            </div>
+
+</div>
+     
+{% endblock %}
+
+{% block scripts %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+<script>
+
+
+
+var options1 = {
+  type: 'bar',
+  data: {
+    labels: ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일","일요일"],
+    datasets: [
+	    {
+	      label: '네이버_1위',
+       
+          borderColor: 'rgb(34, 177, 76)',
+	      data: [6, 4, 6, 10, 8, 10, 14],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',
+           lineTension : 0,
+    	},
+        {
+	      label: '네이버_2위',
+               
+          borderColor: 'rgb(34, 177, 76)',
+	      data: [10, 3, 2, 5, 3, 19, 12],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',
+           lineTension : 0,
+    	},
+                {
+	      label: '네이버_3위',
+               
+          borderColor: 'rgb(34, 177, 76)',
+	      data: [16, 12, 16, 10, 4, 10, 12],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',
+           lineTension : 0,
+    	},
+
+      
+		]
+  },
+  options: {
+  	scales: {
+    	yAxes: [{
+        ticks: {
+					reverse: false,
+          max : 18
+        }
+      }]
+    }
+  }
+};
+
+var ctx1 = document.getElementById('chartJSContainer1').getContext('2d');
+
+//new Chart(ctx, options);
+var myLineChart1 = Chart.Line(ctx1, options1);	
+
+   //변경 데이터 선언
+	 var reData = {"data":[10, 8, 5, 8, 8, 12 ]};
+   //데이터 변경 
+		function changeData(chart, data) {		
+			var new_data = data.data;
+			chart.data.datasets.push({
+          data : new_data,
+          borderWidth : 2 //선굵기
+			  });
+		    // console.dir(chart.data.datasets);
+		    chart.update();
+		}
+    //데이터 삭제
+    function removeData(chart, data) {
+		    chart.data.datasets.pop({
+		       	data : data
+		    });
+		   // console.log(chart.data);
+		    chart.update();
+}
+
+
+/////////////////////////////////////////////////////////////////
+
+
+var options = {
+  type: 'line',
+  data: {
+    labels: ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일","일요일"],
+    datasets: [
+	    {
+	      label: '쿠팡_1위',
+       
+          borderColor: 'rgb(255, 0, 0)',
+	      data: [6, 4, 6, 10, 8, 10, 14],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',
+           lineTension : 0,
+    	},
+        {
+	      label: '쿠팡_2위',
+               
+          borderColor: 'rgb(255, 0, 0)',
+	      data: [10, 3, 2, 5, 3, 19, 12],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',
+           lineTension : 0,
+    	},
+                {
+	      label: '쿠팡_3위',
+               
+          borderColor: 'rgb(255, 0, 0)',
+	      data: [16, 12, 16, 10, 4, 10, 12],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',
+           lineTension : 0,
+    	},
+
+      
+		]
+  },
+  options: {
+  	scales: {
+    	yAxes: [{
+        ticks: {
+					reverse: false,
+          max : 18
+        }
+      }]
+    }
+  }
+};
+
+var ctx = document.getElementById('chartJSContainer').getContext('2d');
+
+//new Chart(ctx, options);
+var myLineChart = Chart.Line(ctx, options);	
+
+   //변경 데이터 선언
+	 var reData = {"data":[10, 8, 5, 8, 8, 12 ]};
+   //데이터 변경 
+		function changeData(chart, data) {		
+			var new_data = data.data;
+			chart.data.datasets.push({
+          data : new_data,
+          borderWidth : 2 //선굵기
+			  });
+		    // console.dir(chart.data.datasets);
+		    chart.update();
+		}
+    //데이터 삭제
+    function removeData(chart, data) {
+		    chart.data.datasets.pop({
+		       	data : data
+		    });
+		   // console.log(chart.data);
+		    chart.update();
+}
+
+
+/////////////////////////////////////////////////////////////////
+
+
+var ctx = document.getElementById("myChart"); //캔버스 id값 가져오기
+var myChart = new Chart(ctx, {
+    type: 'bar', //그래프 형태 지정하기
+    data: {
+        labels: ["강한 긍정", "긍정", "중립", "불만", "강한 불만"],
+        datasets: [{
+            label: '# of Votes', //상단 라벨(데이터값들의 그룹명)
+            data: [12, 19, 3, 5, 2, 3],//데이터값
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',   //1번째 그래프의 바탕색
+                'rgba(54, 162, 235, 0.2)',   //2번째 그래프의 바탕색
+                'rgba(255, 206, 86, 0.2)',   //3번째 그래프의 바탕색
+                'rgba(75, 192, 192, 0.2)',   //4번째 그래프의 바탕색
+                'rgba(153, 102, 255, 0.2)',  //5번째 그래프의 바탕색
+
+            ],
+            borderColor: [  
+                'rgba(255,99,132,1)',        //1번째 그래프의 선색
+                'rgba(54, 162, 235, 1)',     //2번째 그래프의 선색
+                'rgba(255, 206, 86, 1)',     //3번째 그래프의 선색
+                'rgba(75, 192, 192, 1)',     //4번째 그래프의 선색
+                'rgba(153, 102, 255, 1)',    //5번째 그래프의 선색
+
+            ],
+            borderWidth: 1, //선굵기
+             backgroundColor : 'transparent',
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+
+
+/////////////////////////////////////////////////////////////////
+
+var ctx1 = document.getElementById("myChart1"); //캔버스 id값 가져오기
+var myChart1 = new Chart(ctx1, {
+    type: 'bar', //그래프 형태 지정하기
+    data: {
+        labels: ["강한 긍정", "긍정", "중립", "불만", "강한 불만"],
+        datasets: [{
+            label: '# of Votes', //상단 라벨(데이터값들의 그룹명)
+            data: [12, 19, 3, 5, 2, 3],//데이터값
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',   //1번째 그래프의 바탕색
+                'rgba(54, 162, 235, 0.2)',   //2번째 그래프의 바탕색
+                'rgba(255, 206, 86, 0.2)',   //3번째 그래프의 바탕색
+                'rgba(75, 192, 192, 0.2)',   //4번째 그래프의 바탕색
+                'rgba(153, 102, 255, 0.2)',  //5번째 그래프의 바탕색
+
+            ],
+            borderColor: [  
+                'rgba(255,99,132,1)',        //1번째 그래프의 선색
+                'rgba(54, 162, 235, 1)',     //2번째 그래프의 선색
+                'rgba(255, 206, 86, 1)',     //3번째 그래프의 선색
+                'rgba(75, 192, 192, 1)',     //4번째 그래프의 선색
+                'rgba(153, 102, 255, 1)',    //5번째 그래프의 선색
+
+            ],
+            borderWidth: 1, //선굵기
+            backgroundColor : 'transparent',
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+/////////////////////////////////////////////////////////////////
+
+{% comment %} $(document).ready(function() {
+    $('#example1').DataTable({
+	// 표시 건수기능 숨기기
+	lengthChange: false,
+	// 검색 기능 숨기기
+	searching: false,
+
+	// 정보 표시 숨기기
+	info: false,
+	// 페이징 기능 숨기기
+	paging: false
+      
+    });
+
+    
+});
+$(document).ready(function() {
+    $('#example2').DataTable({
+	// 표시 건수기능 숨기기
+	lengthChange: false,
+	// 검색 기능 숨기기
+	searching: false,
+	// 정렬 기능 숨기기
+	ordering: false,
+	// 정보 표시 숨기기
+	info: false,
+	// 페이징 기능 숨기기
+	paging: false
+      
+    });
+
+    
+});
+$(document).ready(function() {
+    $('#example3').DataTable({
+	// 표시 건수기능 숨기기
+	lengthChange: false,
+	// 검색 기능 숨기기
+	searching: false,
+	// 정렬 기능 숨기기
+	ordering: false,
+	// 정보 표시 숨기기
+	info: false,
+	// 페이징 기능 숨기기
+	paging: false
+      
+    });
+
+    
+});
+
+
+$(document).ready(function() {
+    $('#example4').DataTable({
+	// 표시 건수기능 숨기기
+	lengthChange: false,
+	// 검색 기능 숨기기
+	searching: false,
+	// 정렬 기능 숨기기
+	ordering: false,
+	// 정보 표시 숨기기
+	info: false,
+	// 페이징 기능 숨기기
+	paging: false
+      
+    });
+
+    
+});
+$(document).ready(function() {
+    $('#example5').DataTable({
+	// 표시 건수기능 숨기기
+	lengthChange: false,
+	// 검색 기능 숨기기
+	searching: false,
+	// 정렬 기능 숨기기
+	ordering: false,
+	// 정보 표시 숨기기
+	info: false,
+	// 페이징 기능 숨기기
+	paging: false
+      
+    });
+
+    
+});
+$(document).ready(function() {
+    $('#example6').DataTable({
+	// 표시 건수기능 숨기기
+	lengthChange: false,
+	// 검색 기능 숨기기
+	searching: false,
+	// 정렬 기능 숨기기
+	ordering: false,
+	// 정보 표시 숨기기
+	info: false,
+	// 페이징 기능 숨기기
+	paging: false
+      
+    });
+
+    
+}); {% endcomment %}
+
+
+$(document).ready(function() {
+    $('#example7').DataTable({
+
+	info: false,
+
+	
+      
+    });
+
+    
+});
+
+</script>
+
+
+
+ {%endblock%}

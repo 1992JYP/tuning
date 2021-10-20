@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+
+{%block content %}
+<div class="main-content" style="min-height: 874px;">
+
+    <!--해드라인 제품 메뉴 창 시작-->
+    <section class="section">
+      <div class="section-header">
+        <h1>ranking</h1>
+        <div class="section-header-breadcrumb">
+          <div class="breadcrumb-item active"><a href="#">ranking</a></div>
+        </div>
+      </div>
+    </section> 
+
+      <div class="section-content" style=" width: 100%; margin-right: 1.5%; height:1100px; background-color: rgb(248,248,248);">
+            <section class="section" style="width: 48.5%; float: left; margin-right: 1.5%;">
+              <div class="section-header">
+                <h1>자사 검색 결과</h1>
+              </div>
+            </section>
+            <section class="section" style="width: 48.5%; float: left; margin-left: 1.5%;">
+              <div class="section-header">
+                <h1>타사 검색 결과</h1>
+              </div>
+            </section> 
+
+
+            <section class="section" style=" width: 48.5%; float: left; margin-right: 1.5%; height: 100px !important;">
+        <div class="section-content">
+          <table id="ranking_list_cm" class="table table-condensed">
+            <div class="table100-head">
+                <thead>
+                    <tr class="row100 head">
+                        <th class="cell100 column1">순번</th>
+                        <th class="cell100 column3">이미지</th>
+                        <th class="cell100 column2">상품명</th>
+                        <th class="cell100 column3">상품코드</th>
+                        <th class="cell100 column4">매칭 키워드</th>
+                        <th class="cell100 column5">브랜드</th>
+                        <th class="cell100 column6">담당자</th>
+                        <th class="cell100 column7">네이버코드</th>
+                        <th class="cell100 column8">네이버URL</th>
+                        <th class="cell100 column9">쿠팡URL</th>
+                        <th class="cell100 column9">분석하기</th>
+                    </tr>
+                </thead>
+            </div>
+  
+            <div class="table100-body js-pscroll">
+                {% for list in Query %}
+                    <tr class="row100 body">
+                        <td class="cell100 column1">{{list.id}}</td>
+                        <td class="cell100 column3"><img src='{{list.image}}' style="width :50px; height : 50px;"/></td>
+                        <td class="cell100 column2"><a href="{% url 'dashboardapp:review_dashboard' %}  " target="_blank">{{list.pd_name}}</a></td>
+                        <td class="cell100 column3 ">{{list.pd_code}}</td>
+                        <td class="cell100 column4 ">{{list.pd_keyword}}</td>
+                        <td class="cell100 column5">{{list.pd_brand}}</td>
+                        <td class="cell100 column6">{{list.pd_manager}}</td>
+                        <td class="cell100 column7">{{list.nv_code}}</td>
+                        <td class="cell100 column8">
+                            <a href='{{list.nv_url}}'>링크</a>
+                        </td>
+                        <td class="cell100 column9">
+                            <a href='{{list.cp_url}}'>링크</a>
+                        </td>
+                        <td class="cell100 column9">
+                          <input type="submit" value="분석하기">
+                      </td>
+                    </tr>
+                {% endfor %}
+            </div>
+          </table>
+        </div>
+            </section>
+  
+  
+            <!-- 네이버 쿠팡-->
+            <section class="section" style=" width: 48.5%; float: left; margin-left: 1.5%;">
+        <div class="section-content" style="background:rgb(248,248,248);padding-top: 0; padding-left: 0; padding-right: 0;">
+        
+        
+          <div class="section-header">
+            <h1>네이버 로고 넣을 곳</h1>
+          </div>
+  
+  
+          <div class="section-content">
+          <table id="ranking_list_nv" class="table table-condensed">
+            <div class="table100-head">
+                <thead>
+                    <tr class="row100 head">
+                        <th class="cell100 column1">순번</th>
+                        <th class="cell100 column3">순위</th>
+                        <th class="cell100 column2">이미지</th>
+                        <th class="cell100 column3">제품명</th>
+                        <th class="cell100 column4">가격</th>
+                        <th class="cell100 column5">평점</th>
+                    </tr>
+                </thead>
+            </div>
+  
+            <div class="table100-body js-pscroll">
+                {% for list in Query %}
+                    <tr class="row100 body">
+                        <td class="cell100 column1">{{list.id}}</td>
+                        <td class="cell100 column3"><img src='{{list.image}}' style="width :50px; height : 50px;"/></td>
+                        <td class="cell100 column2"><a href="{% url 'dashboardapp:review_dashboard' %}  " target="_blank">{{list.pd_name}}</a></td>
+                        <td class="cell100 column3 ">{{list.pd_code}}</td>
+                        <td class="cell100 column4 ">{{list.pd_keyword}}</td>
+                        <td class="cell100 column5">{{list.pd_brand}}</td>
+                    </tr>
+                {% endfor %}
+            </div>
+          </table>
+          </div>
+  
+  
+  
+  
+          <div class="section-header">
+            <h1>쿠팡 로고 넣을 곳</h1>
+          </div>
+  
+  
+          <div class="section-content">
+          <table id="ranking_list_cp" class="table table-condensed">
+            <div class="table100-head">
+                <thead>
+                    <tr class="row100 head">
+                        <th class="cell100 column1">순번</th>
+                        <th class="cell100 column3">순위</th>
+                        <th class="cell100 column2">이미지</th>
+                        <th class="cell100 column3">제품명</th>
+                        <th class="cell100 column4">가격</th>
+                        <th class="cell100 column5">평점</th>
+                    </tr>
+                </thead>
+            </div>
+  
+            <div class="table100-body js-pscroll">
+                {% for list in Query %}
+                    <tr class="row100 body">
+                        <td class="cell100 column1">{{list.id}}</td>
+                        <td class="cell100 column3"><img src='{{list.image}}' style="width :50px; height : 50px;"/></td>
+                        <td class="cell100 column2"><a href="{% url 'dashboardapp:review_dashboard' %}  " target="_blank">{{list.pd_name}}</a></td>
+                        <td class="cell100 column3 ">{{list.pd_code}}</td>
+                        <td class="cell100 column4 ">{{list.pd_keyword}}</td>
+                        <td class="cell100 column5">{{list.pd_brand}}</td>
+                    </tr>
+                {% endfor %}
+            </div>
+          </table>
+          </div>
+  
+  
+  
+        </div>
+            </section>
+      
+      
+      </div>
+
+
+
+    <section class="section" style="width: 100%;">
+      <div class="section-header">
+        <h1>자사 제품 순위 변동 그래프</h1>
+      </div>
+    </section> 
+
+
+    <div class="section-content" style=" width: 100%; margin-right: 1.5%; height:950px; background-color: rgb(248,248,248);padding-left: 0; padding-right: 0;">
+      <section class="section" style=" width: 100%; margin-right: 1.5%; height: 100px">
+        <div class="section-content" style="position: static;" >
+          <canvas id="ranking_up" style="width : 100%;"></canvas>
+          </div>
+      </section>
+    </div>
+
+
+    <section class="section" style="width: 100%;">
+      <div class="section-header">
+        <h1>타사 제품 랭킹 변동 그래프</h1>
+      </div>
+    </section> 
+
+
+    <section class="section" style="width: 48.5%; float: left; margin-right: 1.5%;">
+      <div class="section-header">
+        <h1>네이버</h1>
+      </div>
+    </section>
+    <section class="section" style="width: 48.5%; float: left; margin-left: 1.5%;">
+      <div class="section-header">
+        <h1>쿠팡</h1>
+      </div>
+    </section> 
+
+    
+
+    <div class="section-content" style=" width: 100%; margin-right: 1.5%; height:500px; background-color: rgb(248, 248, 248);padding-left: 0; padding-right: 0;margin-top: 80px;">
+   
+      <section class="section" style=" width: 100%; margin-right: 1.5%; ">
+        <div class="section-content" style="position: static;width : 48.5% !important; float: left;margin-right: 1.5%;" >
+          <canvas id="ranking_up_nv" style="width: 100%;"></canvas>
+         </div>
+      </section>
+     
+      <section class="section" style=" width: 100%; margin-left: 1.5%; ">
+        <div class="section-content" style="position: static;width : 48.5% !important; float: left; margin-left: 1.5%;" >
+          <canvas id="ranking_up_cp" style="width: 100%;"></canvas>
+         </div>
+      </section>
+      </div>
+
+
+
+
+
+
+</div>
+
+
+{%endblock%}

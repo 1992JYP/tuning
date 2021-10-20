@@ -1,0 +1,265 @@
+<script>
+
+
+/* 랭킹페이지 차트*/
+
+
+
+/* dashboard table function*/
+
+jQuery(function($){
+            $("#dashboard_total_list").DataTable();
+        });
+
+
+        var options40 = {
+  type: 'bar',
+  data: {
+    labels: ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일","일요일"],
+    datasets: [
+
+
+                {
+	      label: '자사제품',
+               
+          borderColor: 'rgb(34, 177, 76)',
+	      data: [16, 12, 16, 10, 4, 10, 12],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',
+           lineTension : 0,
+    	},
+
+      
+		]
+  },
+  options: {
+  	scales: {
+    	yAxes: [{
+        ticks: {
+					reverse: false,
+          max : 18
+        }
+      }]
+    }
+  }
+};
+
+var ctx40 = document.getElementById('ranking_up').getContext('2d');
+
+//new Chart(ctx, options);
+var myLineChart40 = Chart.Line(ctx40, options40);	
+
+   //변경 데이터 선언
+	 var reData = {"data":[10, 8, 5, 8, 8, 12 ]};
+   //데이터 변경 
+		function changeData(chart, data) {		
+			var new_data = data.data;
+			chart.data.datasets.push({
+          data : new_data,
+          borderWidth : 2 //선굵기
+			  });
+		    // console.dir(chart.data.datasets);
+		    chart.update();
+		}
+    //데이터 삭제
+    function removeData(chart, data) {
+		    chart.data.datasets.pop({
+		       	data : data
+		    });
+		   // console.log(chart.data);
+		    chart.update();
+}
+
+var options41 = {
+  type: 'bar',
+  data: {
+    labels: ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일","일요일"],
+    datasets: [
+	    {
+	      label: '네이버_1위',
+       
+          borderColor: 'rgb(34, 177, 76)',
+	      data: [6, 4, 6, 10, 8, 10, 14],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',
+           lineTension : 0,
+    	},
+        {
+	      label: '네이버_2위',
+               
+          borderColor: 'rgb(34, 177, 76)',
+	      data: [10, 3, 2, 5, 3, 19, 12],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',
+           lineTension : 0,
+    	},
+                {
+	      label: '네이버_3위',
+               
+          borderColor: 'rgb(34, 177, 76)',
+	      data: [16, 12, 16, 10, 4, 10, 12],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',
+           lineTension : 0,
+    	},
+
+      
+		]
+  },
+  options: {
+  	scales: {
+    	yAxes: [{
+        ticks: {
+					reverse: false,
+          max : 18
+        }
+      }]
+    }
+  }
+};
+
+var ctx41 = document.getElementById('ranking_up_nv').getContext('2d');
+
+//new Chart(ctx, options);
+var myLineChart41 = Chart.Line(ctx41, options41);	
+
+   //변경 데이터 선언
+	 var reData = {"data":[10, 8, 5, 8, 8, 12 ]};
+   //데이터 변경 
+		function changeData(chart, data) {		
+			var new_data = data.data;
+			chart.data.datasets.push({
+          data : new_data,
+          borderWidth : 2 //선굵기
+			  });
+		    // console.dir(chart.data.datasets);
+		    chart.update();
+		}
+    //데이터 삭제
+    function removeData(chart, data) {
+		    chart.data.datasets.pop({
+		       	data : data
+		    });
+		   // console.log(chart.data);
+		    chart.update();
+}
+
+
+var options42 = {
+  type: 'bar',
+  data: {
+    labels: ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일","일요일"],
+    datasets: [
+	    {
+	      label: '쿠팡_1위',
+       
+          borderColor: 'rgb(34, 177, 76)',
+	      data: [6, 4, 6, 10, 8, 10, 14],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',
+           lineTension : 0,
+    	},
+        {
+	      label: '쿠팡_2위',
+               
+          borderColor: 'rgb(34, 177, 76)',
+	      data: [10, 3, 2, 5, 3, 19, 12],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',
+           lineTension : 0,
+    	},
+                {
+	      label: '쿠팡_3위',
+               
+          borderColor: 'rgb(34, 177, 76)',
+	      data: [16, 12, 16, 10, 4, 10, 12],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',
+           lineTension : 0,
+    	},
+
+      
+		]
+  },
+  options: {
+  	scales: {
+    	yAxes: [{
+        ticks: {
+					reverse: false,
+          max : 18
+        }
+      }]
+    }
+  }
+};
+
+var ctx42 = document.getElementById('ranking_up_cp').getContext('2d');
+
+//new Chart(ctx, options);
+var myLineChart42 = Chart.Line(ctx42, options42);	
+
+   //변경 데이터 선언
+	 var reData = {"data":[10, 8, 5, 8, 8, 12 ]};
+   //데이터 변경 
+		function changeData(chart, data) {		
+			var new_data = data.data;
+			chart.data.datasets.push({
+          data : new_data,
+          borderWidth : 2 //선굵기
+			  });
+		    // console.dir(chart.data.datasets);
+		    chart.update();
+		}
+    //데이터 삭제
+    function removeData(chart, data) {
+		    chart.data.datasets.pop({
+		       	data : data
+		    });
+		   // console.log(chart.data);
+		    chart.update();
+}
+
+
+
+
+jQuery(function($){
+    $("#ranking_list_cm").DataTable();
+});
+jQuery(function($){
+    $("#ranking_list_nv").DataTable();
+});
+jQuery(function($){
+    $("#ranking_list_cp").DataTable();
+});
+  
+
+
+      
+/* dashboard chart function*/
+/* day */
+
+
+
+/* 네이버 팝업 */
+function Sold_out_nv() { window.open( "{% url 'dashboardapp:Sold_out_nv' %}","a", "width=1200px, height=478px, left=200, top=100"); }
+function grade_nv() { window.open( "{% url 'dashboardapp:grade_nv' %}","a", "width=1200px, height=478px, left=200, top=100"); }
+function ranking_top_five_nv() { window.open( "{% url 'dashboardapp:ranking_top_five_nv' %}","a", "width=1200px, height=478px, left=200, top=100"); }
+function lowest_price_nv() { window.open( "{% url 'dashboardapp:lowest_price_nv' %}","a", "width=1200px, height=478px, left=200, top=100"); }
+function ranking_up_nv() { window.open( "{% url 'dashboardapp:ranking_up_nv' %}","a", "width=1200px, height=478px, left=200, top=100"); }
+function review_lowest_nv() { window.open( "{% url 'dashboardapp:review_lowest_nv' %}","a", "width=1200px, height=478px, left=200, top=100"); }
+
+
+/* 쿠팡 팝업 */
+function Sold_out_cp() { window.open( "{% url 'dashboardapp:Sold_out_cp' %}","a", "width=1200px, height=478px, left=200, top=100"); }
+function grade_cp() { window.open("{% url 'dashboardapp:grade_cp' %}", "a", "width=1200px, height=478px, left=200, top=100"); }
+function ranking_top_five_cp() { window.open( "{% url 'dashboardapp:ranking_top_five_cp' %}","a", "width=1200px, height=478px, left=200, top=100"); }
+function lowest_price_cp() { window.open( "{% url 'dashboardapp:lowest_price_cp' %}","a", "width=1200px, height=478px, left=200, top=100"); }
+function ranking_up_cp() { window.open( "{% url 'dashboardapp:ranking_up_cp' %}","a", "width=1200px, height=478px, left=200, top=100"); }
+function review_lowest_cp() { window.open( "{% url 'dashboardapp:review_lowest_cp' %}","a", "width=1200px, height=478px, left=200, top=100"); }
+
+
+
+
+
+
+</script>

@@ -1,0 +1,336 @@
+{% extends 'base.html' %}
+
+{%block content %}
+<div class="main-content" style="min-height: 874px;">
+
+    <!--해드라인 제품 메뉴 창 시작-->
+    <section class="section">
+      <div class="section-header">
+        <h1>keyword</h1>
+        <div class="section-header-breadcrumb">
+          <div class="breadcrumb-item active">keyword</div>
+        </div>
+      </div>
+    </section> 
+
+
+    <!-- 네이버-->
+    <section class="section">
+      <div class="section-header">
+        <h1>네이버 검색 결과</h1>
+        <div class="section-header-breadcrumb">
+          <div class="breadcrumb-item active">naver</div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section">
+      <div class="section-content" style="padding-top: 20px;">
+        <div>
+  
+        </div>
+        <input type="radio" name="tabmenu" id="tab01" checked>
+        <label for="tab01" style = "border-radius:5px; position :absolute;">키워드</label>
+      
+        <input type="radio" name="tabmenu" id="tab02">
+        <label for="tab02" style="border-radius:5px;position :absolute;left: 92px;">자사</label>
+      
+        <input type="radio" name="tabmenu" id="tab03">
+        <label for="tab03" style="border-radius:5px;position :absolute;left: 141px;">타사</label>
+          
+        
+        <div class="conbox con1" style="margin-top: 70px;width: 100%;">        
+             
+          <table id="review_keyword_nv" class="table table-condensed">
+            <div class="table100-head">
+                <thead>
+                    <tr class="row100 head">
+                        <th class="cell100 column1">순번</th>
+                        <th class="cell100 column3">키워드</th>
+                        <th class="cell100 column2">검색 수</th>
+                        <th class="cell100 column3">등록 제품 숫자</th>
+                        <th class="cell100 column4">제품명</th>
+                        <th class="cell100 column5">이미지</th>
+                        <th class="cell100 column6">예상 판매량</th>
+                        <th class="cell100 column7">예상 판매액</th>
+                        <th class="cell100 column8">분석하기</th>
+                    </tr>
+                </thead>
+            </div>
+  
+            <div class="table100-body js-pscroll">
+                {% for list in Query %}
+                    <tr class="row100 body">
+                        <td class="cell100 column1">{{list.id}}</td>
+                        <td class="cell100 column3"><img src='{{list.image}}' style="width :50px; height : 50px;"/></td>
+                        <td class="cell100 column2"><a href="{% url 'dashboardapp:review_dashboard' %}  " target="_blank">{{list.pd_name}}</a></td>
+                        <td class="cell100 column3 ">{{list.pd_code}}</td>
+                        <td class="cell100 column4 ">{{list.pd_keyword}}</td>
+                        <td class="cell100 column5">{{list.pd_brand}}</td>
+                        <td class="cell100 column6">{{list.pd_manager}}</td>
+                        <td class="cell100 column7">{{list.nv_code}}</td>
+                        <td class="cell100 column8"><a href='{{list.nv_url}}'>링크</a></td>
+
+                    </tr>
+                {% endfor %}
+            </div>
+          </table>
+
+
+         </div> 
+        <div class="conbox con2" style="margin-top: 70px;width: 100%;">
+
+          <table id="review_keyword_cm" class="table table-condensed">
+            <div class="table100-head">
+                <thead>
+                    <tr class="row100 head">
+                        <th class="cell100 column1">순번</th>
+                        <th class="cell100 column3">키워드</th>
+                        <th class="cell100 column2">검색 수</th>
+                        <th class="cell100 column3">등록 제품 숫자</th>
+                        <th class="cell100 column4">제품명</th>
+                        <th class="cell100 column5">이미지</th>
+                        <th class="cell100 column6">예상 판매량</th>
+                        <th class="cell100 column7">예상 판매액</th>
+                        <th class="cell100 column8">분석하기</th>
+                    </tr>
+                </thead>
+            </div>
+  
+            <div class="table100-body js-pscroll">
+                {% for list in Query %}
+                    <tr class="row100 body">
+                        <td class="cell100 column1">{{list.id}}</td>
+                        <td class="cell100 column3"><img src='{{list.image}}' style="width :50px; height : 50px;"/></td>
+                        <td class="cell100 column2"><a href="{% url 'dashboardapp:review_dashboard' %}  " target="_blank">{{list.pd_name}}</a></td>
+                        <td class="cell100 column3 ">{{list.pd_code}}</td>
+                        <td class="cell100 column4 ">{{list.pd_keyword}}</td>
+                        <td class="cell100 column5">{{list.pd_brand}}</td>
+                        <td class="cell100 column6">{{list.pd_manager}}</td>
+                        <td class="cell100 column7">{{list.nv_code}}</td>
+                        <td class="cell100 column8"><a href='{{list.nv_url}}'>링크</a></td>
+
+                    </tr>
+                {% endfor %}
+            </div>
+          </table>
+        </div>
+        <div class="conbox con3" style="margin-top: 70px;width: 100%;">
+
+          <table id="review_keyword_dcm" class="table table-condensed">
+            <div class="table100-head">
+                <thead>
+                    <tr class="row100 head">
+                        <th class="cell100 column1">순번</th>
+                        <th class="cell100 column3">키워드</th>
+                        <th class="cell100 column2">검색 수</th>
+                        <th class="cell100 column3">등록 제품 숫자</th>
+                        <th class="cell100 column4">제품명</th>
+                        <th class="cell100 column5">이미지</th>
+                        <th class="cell100 column6">예상 판매량</th>
+                        <th class="cell100 column7">예상 판매액</th>
+                        <th class="cell100 column8">분석하기</th>
+                    </tr>
+                </thead>
+            </div>
+  
+            <div class="table100-body js-pscroll">
+                {% for list in Query %}
+                    <tr class="row100 body">
+                        <td class="cell100 column1">{{list.id}}</td>
+                        <td class="cell100 column3"><img src='{{list.image}}' style="width :50px; height : 50px;"/></td>
+                        <td class="cell100 column2"><a href="{% url 'dashboardapp:review_dashboard' %}  " target="_blank">{{list.pd_name}}</a></td>
+                        <td class="cell100 column3 ">{{list.pd_code}}</td>
+                        <td class="cell100 column4 ">{{list.pd_keyword}}</td>
+                        <td class="cell100 column5">{{list.pd_brand}}</td>
+                        <td class="cell100 column6">{{list.pd_manager}}</td>
+                        <td class="cell100 column7">{{list.nv_code}}</td>
+                        <td class="cell100 column8"><a href='{{list.nv_url}}'>링크</a></td>
+
+                    </tr>
+                {% endfor %}
+            </div>
+          </table>
+
+        </div>
+        
+      </div>
+    </section>
+
+
+
+    <!-- 쿠팡-->
+    <section class="section">
+      <div class="section-header">
+        <h1>쿠팡 검색 결과</h1>
+        <div class="section-header-breadcrumb">
+          <div class="breadcrumb-item active">coupang</div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section">
+      <div class="section-content">
+        
+        <input type="radio" name="tabmenu" id="tab04" checked>
+        <label for="tab04" style = "border-radius:5px; position :absolute;">키워드</label>
+      
+        <input type="radio" name="tabmenu" id="tab05">
+        <label for="tab05" style="border-radius:5px;position :absolute;left: 92px;">자사</label>
+      
+        <input type="radio" name="tabmenu" id="tab06">
+        <label for="tab06" style="border-radius:5px;position :absolute;left: 141px;">타사</label>
+          
+        
+        <div class="conbox con4" style="margin-top: 70px;width: 100%;">        
+             
+          <table id="review_keyword_cp" class="table table-condensed">
+            <div class="table100-head">
+                <thead>
+                    <tr class="row100 head">
+                        <th class="cell100 column1">순번</th>
+                        <th class="cell100 column3">키워드</th>
+                        <th class="cell100 column2">검색 수</th>
+                        <th class="cell100 column3">등록 제품 숫자</th>
+                        <th class="cell100 column4">제품명</th>
+                        <th class="cell100 column5">이미지</th>
+                        <th class="cell100 column6">예상 판매량</th>
+                        <th class="cell100 column7">예상 판매액</th>
+                        <th class="cell100 column8">분석하기</th>
+                    </tr>
+                </thead>
+            </div>
+  
+            <div class="table100-body js-pscroll">
+                {% for list in Query %}
+                    <tr class="row100 body">
+                        <td class="cell100 column1">{{list.id}}</td>
+                        <td class="cell100 column3"><img src='{{list.image}}' style="width :50px; height : 50px;"/></td>
+                        <td class="cell100 column2"><a href="{% url 'dashboardapp:review_dashboard' %}  " target="_blank">{{list.pd_name}}</a></td>
+                        <td class="cell100 column3 ">{{list.pd_code}}</td>
+                        <td class="cell100 column4 ">{{list.pd_keyword}}</td>
+                        <td class="cell100 column5">{{list.pd_brand}}</td>
+                        <td class="cell100 column6">{{list.pd_manager}}</td>
+                        <td class="cell100 column7">{{list.nv_code}}</td>
+                        <td class="cell100 column8"><a href='{{list.nv_url}}'>링크</a></td>
+
+                    </tr>
+                {% endfor %}
+            </div>
+          </table>
+
+
+         </div> 
+        <div class="conbox con5" style="margin-top: 70px;width: 100%;">
+
+          <table id="review_keyword_cm_cp" class="table table-condensed">
+            <div class="table100-head">
+                <thead>
+                    <tr class="row100 head">
+                        <th class="cell100 column1">순번</th>
+                        <th class="cell100 column3">키워드</th>
+                        <th class="cell100 column2">검색 수</th>
+                        <th class="cell100 column3">등록 제품 숫자</th>
+                        <th class="cell100 column4">제품명</th>
+                        <th class="cell100 column5">이미지</th>
+                        <th class="cell100 column6">예상 판매량</th>
+                        <th class="cell100 column7">예상 판매액</th>
+                        <th class="cell100 column8">분석하기</th>
+                    </tr>
+                </thead>
+            </div>
+  
+            <div class="table100-body js-pscroll">
+                {% for list in Query %}
+                    <tr class="row100 body">
+                        <td class="cell100 column1">{{list.id}}</td>
+                        <td class="cell100 column3"><img src='{{list.image}}' style="width :50px; height : 50px;"/></td>
+                        <td class="cell100 column2"><a href="{% url 'dashboardapp:review_dashboard' %}  " target="_blank">{{list.pd_name}}</a></td>
+                        <td class="cell100 column3 ">{{list.pd_code}}</td>
+                        <td class="cell100 column4 ">{{list.pd_keyword}}</td>
+                        <td class="cell100 column5">{{list.pd_brand}}</td>
+                        <td class="cell100 column6">{{list.pd_manager}}</td>
+                        <td class="cell100 column7">{{list.nv_code}}</td>
+                        <td class="cell100 column8"><a href='{{list.nv_url}}'>링크</a></td>
+
+                    </tr>
+                {% endfor %}
+            </div>
+          </table>
+        </div>
+        <div class="conbox con6" style="margin-top: 70px;width: 100%;">
+
+          <table id="review_keyword_dcm_cp" class="table table-condensed">
+            <div class="table100-head">
+                <thead>
+                    <tr class="row100 head">
+                        <th class="cell100 column1">순번</th>
+                        <th class="cell100 column3">키워드</th>
+                        <th class="cell100 column2">검색 수</th>
+                        <th class="cell100 column3">등록 제품 숫자</th>
+                        <th class="cell100 column4">제품명</th>
+                        <th class="cell100 column5">이미지</th>
+                        <th class="cell100 column6">예상 판매량</th>
+                        <th class="cell100 column7">예상 판매액</th>
+                        <th class="cell100 column8">분석하기</th>
+                    </tr>
+                </thead>
+            </div>
+  
+            <div class="table100-body js-pscroll">
+                {% for list in Query %}
+                    <tr class="row100 body">
+                        <td class="cell100 column1">{{list.id}}</td>
+                        <td class="cell100 column3"><img src='{{list.image}}' style="width :50px; height : 50px;"/></td>
+                        <td class="cell100 column2"><a href="{% url 'dashboardapp:review_dashboard' %}  " target="_blank">{{list.pd_name}}</a></td>
+                        <td class="cell100 column3 ">{{list.pd_code}}</td>
+                        <td class="cell100 column4 ">{{list.pd_keyword}}</td>
+                        <td class="cell100 column5">{{list.pd_brand}}</td>
+                        <td class="cell100 column6">{{list.pd_manager}}</td>
+                        <td class="cell100 column7">{{list.nv_code}}</td>
+                        <td class="cell100 column8"><a href='{{list.nv_url}}'>링크</a></td>
+
+                    </tr>
+                {% endfor %}
+            </div>
+          </table>
+
+        </div>
+      </div>
+    </section>
+
+
+
+</div>
+
+
+{%endblock%}
+
+
+{%block script %}
+<script>
+jQuery(function($){
+    $("#review_keyword_nv").DataTable();
+});
+jQuery(function($){
+    $("#review_keyword_cm").DataTable();
+});
+jQuery(function($){
+    $("#review_keyword_dcm").DataTable();
+});
+
+jQuery(function($){
+    $("#review_keyword_cp").DataTable();
+});
+jQuery(function($){
+    $("#review_keyword_cm_cp").DataTable();
+});
+jQuery(function($){
+    $("#review_keyword_dcm_cp").DataTable();
+});
+
+</script>
+
+{%endblock%}

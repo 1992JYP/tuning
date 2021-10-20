@@ -1,0 +1,2727 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block style%}
+<style type="text/css">
+.main-content{
+    padding-left : 100px !important;
+}
+</style>
+{%endblock%}
+
+{% block title %}생활낙원{% endblock %}
+{%block web_title%}<title>리뷰 분석</title>{%endblock%}
+
+
+
+{% block content %}
+
+
+
+<!-- 상단 제품 내용 타이틀-->
+<div style = "width : 1670px; height : 70px; background : white; padding : 20px;"><h2 style = "margin-top : 0px; font-weight : bold;">제품 상세 정보</h2></div>
+<div style = "width : 1670px; height : 300px;  background: white; padding : 20px; margin-top : 20px;">
+
+
+<div style="width :1200px; height : 200px;  margin-left : 300px; margin-top : 30px;"  >
+
+<img src='{{main.image}}' style = "width :200px; height : 200px; float :left;"/>
+<div style = "width : 800px;height : 200px;  float : left; margin-left : 120px; padding : 20px; padding-top : 10px;"> 
+
+
+<div><h3 style = "font-weight : bold;">{{main.pd_name}}</h3></div>
+
+
+<div style = " margin-top : 20px; margin-right : 20px;">
+<div style = "float : left; margin-right : 20px;"><a href ="">네이버</a></div>    
+<div><a href ="">쿠팡</a></div>
+</div>
+
+
+<div style = "width : 600px; height : 50px; border : 1px solid rgb(103,119,239); margin-top : 20px; border-radius : 10px;">
+
+
+<div style = "padding : 15px; float:left; ">제품 리스트 수  : 100 건 </div>
+<div style = "padding : 15px; float:left; ">전체 리뷰 수  : 100건</div>
+<div style = "padding : 15px; float:left; ">만족도  : 60 %</div>
+<div style = "padding : 15px; float:left; ">평점  : 4.5</div>
+
+
+</div>
+
+</div>
+
+        	           
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div style = "width : 1670px; height : 3000px; background : white;  margin-top : 20px;">
+
+<div style = "width : 1610px; height : 50px;  margin-top : 30px;">
+ 
+
+ <div class="total_tabs">
+
+    <input id="all" type="radio" name="tab_item" checked>
+    <label class="tab_item" for="all">통합</label>
+    
+    <input id="programming" type="radio" name="tab_item">
+    <label class="tab_item" for="programming">사이즈</label>
+    
+    <input id="design" type="radio" name="tab_item">
+    <label class="tab_item" for="design">가격</label>
+    
+    <input id="design1" type="radio" name="tab_item">
+    <label class="tab_item" for="design1">사용성</label>
+    
+    <input id="design2" type="radio" name="tab_item">
+    <label class="tab_item" for="design2">재질</label>
+    
+    <input id="design3" type="radio" name="tab_item">
+    <label class="tab_item" for="design3">디자인 </label>
+    
+    
+    
+    <div class="total_tab_content" id="all_content">
+        
+        <h2 style = "font-weight : bold; padding : 20px; background : white; width : 1670px;">통합 대시보드</h2>
+        <div style = "height : 500px; width : 1670px;  margin : 30px; margin-left : 0px; background : white;">
+        
+            <div style = "height : 350px; width : 710px;  margin : 20px; float : left;">
+                    <canvas id="myChart"  style = "margin-top : 20px; margin-left : 60px;"></canvas>
+                    <div style = "width : 710px; height : 50px;  margin-top : 20px; padding : 15px; font-weight : bold; text-align : center; margin-left : 60px;" > 속성 분포도</div>
+
+
+
+            </div>
+            <div style = "height : 350px; width : 710px;  margin : 20px; float : left; margin-bottom: 0px;">
+            
+             <canvas id="myChart1" style = "margin-top : 20px; margin-left : 100px;"></canvas>
+             <div style = "width : 710px; height : 50px;  margin-top : 20px; padding : 15px; font-weight : bold; text-align : center;margin-left : 100px;"  > 평점 분포도</div>
+
+
+
+            </div> 
+
+
+
+            
+            
+ 
+
+        
+        </div>
+
+
+        <div style = "height : 750px; width : 1670px;  margin : 30px; margin-left : 0px; background : white; ">
+        
+            <div style = "height : 350px; width : 710px;  margin : 20px; float : left;">
+         <div style = "width : 710px; height : 50px;  margin-top : 20px; padding : 15px; font-weight : bold; text-align : center; margin-left : 60px; font-size : 25px;" > 키워드 </div>           
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;margin-left: 80px;margin-right: 30px;">
+            <div class="table100-head">
+
+
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+                {% for i in key%}
+				<tr class="row100 body">
+
+                    <td class="cell100 column1">{{i.keyword}}</td>
+                    <td class="cell100 column2">{{i.key_grade}}</td>
+				</tr>
+                {% endfor %}
+
+
+            </div>
+        </table>
+
+
+            </div>
+            <div style = "height : 350px; width : 710px;  margin : 20px; float : left;">
+            <div style = "width : 710px; height : 50px;  margin-top : 20px; padding : 15px; font-weight : bold; text-align : center;margin-left : 100px; font-size : 25px;"  > 핵심문장</div>
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;margin-left: 80px;margin-right: 30px;">
+            <div class="table100-head">
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+                {% for i in keys%}
+				<tr class="row100 body">
+
+                    <td class="cell100 column1">{{i.analysis_date}}</td>
+                    <td class="cell100 column2">{{i.sentence}}</td>
+				</tr>
+                {% endfor %}
+ 
+
+            </div>
+        </table>
+
+            </div> 
+
+
+        </div>
+
+
+            {% comment %} 감성 {% endcomment %}
+        <div style = "height : 750px; width : 1670px;  margin : 30px; margin-left : 0px; background : white; margin-bottom: 0px;">
+        
+            <div style = "height : 350px; width : 710px;  margin : 20px; float : left;">
+         <div style = "width : 710px; height : 50px;  margin-top : 20px; padding : 15px; font-weight : bold; text-align : center; margin-left : 60px; font-size : 25px;" > 키워드 </div>           
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;margin-left: 80px;margin-right: 30px;">
+            <div class="table100-head">
+
+
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+                {% for i in emo%}
+				<tr class="row100 body">
+
+                    <td class="cell100 column1">{{i.keyword}}</td>
+                    <td class="cell100 column2">{{i.key_grade}}</td>
+				</tr>
+                {% endfor %}
+
+
+            </div>
+        </table>
+
+
+            </div>
+            <div style = "height : 350px; width : 710px;  margin : 20px; float : left;">
+            <div style = "width : 710px; height : 50px;  margin-top : 20px; padding : 15px; font-weight : bold; text-align : center;margin-left : 100px; font-size : 25px;"  > 핵심문장</div>
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;margin-left: 80px;margin-right: 30px;">
+            <div class="table100-head">
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+                {% for i in emos%}
+				<tr class="row100 body">
+
+                    <td class="cell100 column1">{{i.analysis_date}}</td>
+                    <td class="cell100 column2">{{i.sentence}}</td>
+				</tr>
+                {% endfor %}
+ 
+
+            </div>
+        </table>
+
+            </div> 
+
+
+        </div>
+            
+
+
+   
+    <!-- 시작
+      <div style = "margin : 30px; width : 375px; height : 450px; background : white; margin-top : 0px; margin-left : 20px; float : left;">    
+                {% comment %} <canvas id="line-chart20" style = "width : 375px;"></canvas>
+
+                <div style="position : absolute;top: 2975px;left: 230px; font-weight : bold; font-size : 25px; color : rgb(34, 172, 255);">속성 A : 90 %</div> {% endcomment %}
+
+         </div>
+
+
+        <div style = "margin : 30px; width : 375px; height : 450px; background : white; margin-top : 0px; margin-left : 5px; float : left;">    
+                {% comment %} <canvas id="line-chart21" style = "width : 375px;"></canvas> 
+
+
+                <div style="position : absolute;top: 2975px;left: 650px; font-weight : bold; font-size : 25px; color:rgb(34, 172, 255);">속성 B : 50 %</div> {% endcomment %}
+
+         </div>
+ 
+
+
+                 <div style = "margin : 30px; width : 375px; height : 450px; background : white; margin-top : 0px; margin-left : 5px; float : left;">    
+
+                {% comment %} <canvas id="line-chart22" style = "width : 375px;"></canvas> 
+                <div style="position : absolute;top: 2975px;left: 1060px; font-weight : bold; font-size : 25px; color : rgb(255, 125, 125);">속성 C : 40 %</div> {% endcomment %}
+
+         </div>
+
+
+
+                 <div style = "margin : 30px; width : 375px; height : 450px; background : white; margin-top : 0px; margin-left : 5px; float : left;">    
+{% comment %} 
+                <canvas id="line-chart23" style = "width : 375px;"></canvas> 
+                <div style="position : absolute;top: 2975px;left: 1460px; font-weight : bold; font-size : 25px; color : rgb(255, 125, 125);">속성 D : 70 %</div> {% endcomment %}
+         </div>
+
+
+                          {% comment %} <div style = "margin : 30px; width : 1605px; height : 50px; background : white; margin-top : 0px; margin-left : 20px; float : left;text-align : center;font-weight : bold;font-size : 25px;">    
+
+                    키워드 긍부정 퍼센트 
+         </div>  {% endcomment %}
+
+
+
+
+{% comment %} 
+       <div style = "margin : 30px; width : 1000px; height : 50px; background : green; margin-top : 0px; margin-left : 320px; text-align : center; font-weight : bold; font-size : 25px; ">    
+         
+         
+         키워드 긍부정 그래프
+         
+         
+         </div>  {% endcomment %}
+         
+         
+         
+         </div>
+
+
+-->
+
+         
+
+
+
+
+                
+         
+
+
+         
+         
+
+         
+
+
+                
+                <canvas id="myChart11" style="padding : 30px;"></canvas>
+         
+         
+
+
+
+
+         
+         
+         
+
+
+
+
+
+
+      
+
+
+    </div>
+
+    <div class="total_tab_content" id="programming_content">
+            <h2 style = "font-weight : bold; padding : 20px; background : white; width : 1670px;margin-bottom : 30px; ">긍부정 분포도 - 속성 A</h2>
+     <div style= "width : 1670px; height : 550px; background : white; "> 
+
+
+
+
+            <div   style= "height : 500px; width : 500px; float : left; margin-left : 30px;" >
+            <canvas id="line-chart24" style="padding : 30px;"></canvas>
+            <div style="position : absolute;top: 935px;left: 300px; font-weight : bold; font-size : 25px; color : rgb(34, 172, 255);">속성 A : 70 %</div>
+            </div>
+            <div   style= "height : 500px; width : 500px; float : left; margin-left : 60px;" >
+            <canvas id="line-chart25" style="padding : 30px;"></canvas>
+            <div style="position : absolute;top: 935px;left: 860px; font-weight : bold; font-size : 25px; color : rgb(255, 125, 125);">속성 A : 70 %</div>
+            </div>
+            <div   style= "height : 500px; width : 500px; float : left; margin-left : 60px;" >
+            <canvas id="line-chart26" style="padding : 30px;"></canvas>
+            <div style="position : absolute;top: 935px;left: 1420px; font-weight : bold; font-size : 25px; color : rgb(168,255,168);">속성 A : 70 %</div>
+            
+            </div>
+            </div>       
+
+
+<div style="height : 350px; width : 1670px;  margin : 30px; margin-left : 0px; background : white; margin-bottom: 0px;">
+        
+            <div style="height : 350px; width : 710px;  margin : 20px; float : left;">
+         <div style="width : 710px; height : 50px;  margin-top : 20px; padding : 15px; font-weight : bold; text-align : center; margin-left : 60px; font-size : 25px;"> 키워드 </div>           
+        <div class="table100-head">
+
+
+
+            </div><div class="table100-body js-pscroll">
+
+
+				</div><table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;margin-left: 80px;margin-right: 30px;">
+            
+
+            <tbody><tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            
+        </tbody></table>
+
+
+
+
+                    
+
+
+
+            </div>
+            <div style="height : 350px; width : 710px;  margin : 20px; float : left;">
+            <div style="width : 710px; height : 50px;  margin-top : 20px; padding : 15px; font-weight : bold; text-align : center;margin-left : 100px; font-size : 25px;"> 핵심문장</div>
+        <div class="table100-head">
+
+
+
+            </div><div class="table100-body js-pscroll">
+
+
+				</div>
+                
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;margin-left: 80px;margin-right: 30px;">
+            
+
+            <tbody><tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            
+        </tbody></table>
+             
+
+
+
+            </div> 
+
+
+
+            
+
+            
+                 
+ 
+
+        
+        </div>
+
+        <h2 style = "font-weight : bold; padding : 20px; background : white; width : 1670px;margin-bottom : 30px; ">기간별 키워드</h2>
+
+        <div style = "width : 1670px; height : 350px; margin-top: 20px; background-color : white;">
+        
+        <div   style = "height : 400px; width : 530px;  margin-left : 20px; float : left ;">
+            <div style = "width : 530px; height : 50px;  text-align : center; font-weight : bold; font-size : 20px; margin-top : 20px;">
+               1개월 
+            </div>
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;">
+            <div class="table100-head">
+
+
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            </div>
+        </table>
+            
+        
+        </div>
+        <div   style = "height : 400px; width : 530px;  margin-left : 20px; float : left; ">
+            <div style = "width : 530px; height : 50px;  text-align : center;font-weight : bold; font-size : 20px;margin-top : 20px;">
+               3개월 
+            </div>
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;">
+            <div class="table100-head">
+
+
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            </div>
+        </table>
+
+          
+        </div>
+        <div   style = "height : 400px; width : 530px;  margin-left : 20px; float : left;">
+            <div style = "width : 530px; height : 50px;  text-align : center; font-weight : bold; font-size : 20px;margin-top : 20px;">
+               6개월
+            </div>
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;">
+            <div class="table100-head">
+
+
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            </div>
+        </table>
+        
+        </div>
+        
+        </div>
+
+
+    </div>
+    
+    <div class="total_tab_content" id="design_content">
+                   <h2 style = "font-weight : bold; padding : 20px; background : white; width : 1670px;margin-bottom : 30px; ">긍부정 분포도 - 속성 B</h2>
+     <div style= "width : 1670px; height : 550px; background : white; "> 
+
+
+
+
+            <div   style= "height : 500px; width : 500px; float : left; margin-left : 30px;" >
+            <canvas id="line-chart27" style="padding : 30px;"></canvas>
+            <div style="position : absolute;top: 935px;left: 300px; font-weight : bold; font-size : 25px; color : rgb(34, 172, 255);">속성 A : 70 %</div>
+            </div>
+            <div   style= "height : 500px; width : 500px; float : left; margin-left : 60px;" >
+            <canvas id="line-chart28" style="padding : 30px;"></canvas>
+            <div style="position : absolute;top: 935px;left: 860px; font-weight : bold; font-size : 25px; color : rgb(255, 125, 125);">속성 A : 70 %</div>
+            </div>
+            <div   style= "height : 500px; width : 500px; float : left; margin-left : 60px;" >
+            <canvas id="line-chart29" style="padding : 30px;"></canvas>
+            <div style="position : absolute;top: 935px;left: 1420px; font-weight : bold; font-size : 25px; color : rgb(168,255,168);">속성 A : 70 %</div>
+            
+            </div>
+            </div>       
+
+
+<div style="height : 350px; width : 1670px;  margin : 30px; margin-left : 0px; background : white; margin-bottom: 0px;">
+        
+            <div style="height : 350px; width : 710px;  margin : 20px; float : left;">
+         <div style="width : 710px; height : 50px;  margin-top : 20px; padding : 15px; font-weight : bold; text-align : center; margin-left : 60px; font-size : 25px;"> 키워드 </div>           
+        <div class="table100-head">
+
+
+
+            </div><div class="table100-body js-pscroll">
+
+
+				</div><table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;margin-left: 80px;margin-right: 30px;">
+            
+
+            <tbody><tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            
+        </tbody></table>
+
+
+
+
+                    
+
+
+
+            </div>
+            <div style="height : 350px; width : 710px;  margin : 20px; float : left;">
+            <div style="width : 710px; height : 50px;  margin-top : 20px; padding : 15px; font-weight : bold; text-align : center;margin-left : 100px; font-size : 25px;"> 핵심문장</div>
+        <div class="table100-head">
+
+
+
+            </div><div class="table100-body js-pscroll">
+
+
+				</div>
+                
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;margin-left: 80px;margin-right: 30px;">
+            
+
+            <tbody><tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            
+        </tbody></table>
+             
+
+
+
+            </div> 
+
+
+
+            
+
+            
+                 
+ 
+
+        
+        </div>
+
+        <h2 style = "font-weight : bold; padding : 20px; background : white; width : 1670px;margin-bottom : 30px; ">기간별 키워드</h2>
+
+        <div style = "width : 1670px; height : 350px; margin-top: 20px; background-color : white;">
+        
+        <div   style = "height : 400px; width : 530px;  margin-left : 20px; float : left ;">
+            <div style = "width : 530px; height : 50px;  text-align : center; font-weight : bold; font-size : 20px; margin-top : 20px;">
+               1개월 
+            </div>
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;">
+            <div class="table100-head">
+
+
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            </div>
+        </table>
+            
+        
+        </div>
+        <div   style = "height : 400px; width : 530px;  margin-left : 20px; float : left; ">
+            <div style = "width : 530px; height : 50px;  text-align : center;font-weight : bold; font-size : 20px;margin-top : 20px;">
+               3개월 
+            </div>
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;">
+            <div class="table100-head">
+
+
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            </div>
+        </table>
+
+          
+        </div>
+        <div   style = "height : 400px; width : 530px;  margin-left : 20px; float : left;">
+            <div style = "width : 530px; height : 50px;  text-align : center; font-weight : bold; font-size : 20px;margin-top : 20px;">
+               6개월
+            </div>
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;">
+            <div class="table100-head">
+
+
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            </div>
+        </table>
+        
+        </div>
+        
+        </div>
+
+
+    </div>
+    
+    <div class="total_tab_content" id="design_content1">
+               <h2 style = "font-weight : bold; padding : 20px; background : white; width : 1670px;margin-bottom : 30px; ">긍부정 분포도 - 속성 C</h2>
+     <div style= "width : 1670px; height : 550px; background : white; "> 
+
+
+
+
+            <div   style= "height : 500px; width : 500px; float : left; margin-left : 30px;" >
+            <canvas id="line-chart30" style="padding : 30px;"></canvas>
+            <div style="position : absolute;top: 935px;left: 300px; font-weight : bold; font-size : 25px; color : rgb(34, 172, 255);">속성 A : 70 %</div>
+            </div>
+            <div   style= "height : 500px; width : 500px; float : left; margin-left : 60px;" >
+            <canvas id="line-chart31" style="padding : 30px;"></canvas>
+            <div style="position : absolute;top: 935px;left: 860px; font-weight : bold; font-size : 25px; color : rgb(255, 125, 125);">속성 A : 70 %</div>
+            </div>
+            <div   style= "height : 500px; width : 500px; float : left; margin-left : 60px;" >
+            <canvas id="line-chart32" style="padding : 30px;"></canvas>
+            <div style="position : absolute;top: 935px;left: 1420px; font-weight : bold; font-size : 25px; color : rgb(168,255,168);">속성 A : 70 %</div>
+            
+            </div>
+            </div>       
+
+
+<div style="height : 350px; width : 1670px;  margin : 30px; margin-left : 0px; background : white; margin-bottom: 0px;">
+        
+            <div style="height : 350px; width : 710px;  margin : 20px; float : left;">
+         <div style="width : 710px; height : 50px;  margin-top : 20px; padding : 15px; font-weight : bold; text-align : center; margin-left : 60px; font-size : 25px;"> 키워드 </div>           
+        <div class="table100-head">
+
+
+
+            </div><div class="table100-body js-pscroll">
+
+
+				</div><table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;margin-left: 80px;margin-right: 30px;">
+            
+
+            <tbody><tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            
+        </tbody></table>
+
+
+
+
+                    
+
+
+
+            </div>
+            <div style="height : 350px; width : 710px;  margin : 20px; float : left;">
+            <div style="width : 710px; height : 50px;  margin-top : 20px; padding : 15px; font-weight : bold; text-align : center;margin-left : 100px; font-size : 25px;"> 핵심문장</div>
+        <div class="table100-head">
+
+
+
+            </div><div class="table100-body js-pscroll">
+
+
+				</div>
+                
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;margin-left: 80px;margin-right: 30px;">
+            
+
+            <tbody><tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            
+        </tbody></table>
+             
+
+
+
+            </div> 
+
+
+
+            
+
+            
+                 
+ 
+
+        
+        </div>
+
+        <h2 style = "font-weight : bold; padding : 20px; background : white; width : 1670px;margin-bottom : 30px; ">기간별 키워드</h2>
+
+        <div style = "width : 1670px; height : 350px; margin-top: 20px; background-color : white;">
+        
+        <div   style = "height : 400px; width : 530px;  margin-left : 20px; float : left ;">
+            <div style = "width : 530px; height : 50px;  text-align : center; font-weight : bold; font-size : 20px; margin-top : 20px;">
+               1개월 
+            </div>
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;">
+            <div class="table100-head">
+
+
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            </div>
+        </table>
+            
+        
+        </div>
+        <div   style = "height : 400px; width : 530px;  margin-left : 20px; float : left; ">
+            <div style = "width : 530px; height : 50px;  text-align : center;font-weight : bold; font-size : 20px;margin-top : 20px;">
+               3개월 
+            </div>
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;">
+            <div class="table100-head">
+
+
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            </div>
+        </table>
+
+          
+        </div>
+        <div   style = "height : 400px; width : 530px;  margin-left : 20px; float : left;">
+            <div style = "width : 530px; height : 50px;  text-align : center; font-weight : bold; font-size : 20px;margin-top : 20px;">
+               6개월
+            </div>
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;">
+            <div class="table100-head">
+
+
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            </div>
+        </table>
+        
+        </div>
+        
+        </div>
+ 
+    </div>
+    
+    <div class="total_tab_content" id="design_content2">
+                   <h2 style = "font-weight : bold; padding : 20px; background : white; width : 1670px;margin-bottom : 30px; ">긍부정 분포도 - 속성 D</h2>
+     <div style= "width : 1670px; height : 550px; background : white; "> 
+
+
+
+
+            <div   style= "height : 500px; width : 500px; float : left; margin-left : 30px;" >
+            <canvas id="line-chart33" style="padding : 30px;"></canvas>
+            <div style="position : absolute;top: 935px;left: 300px; font-weight : bold; font-size : 25px; color : rgb(34, 172, 255);">속성 A : 70 %</div>
+            </div>
+            <div   style= "height : 500px; width : 500px; float : left; margin-left : 60px;" >
+            <canvas id="line-chart34" style="padding : 30px;"></canvas>
+            <div style="position : absolute;top: 935px;left: 860px; font-weight : bold; font-size : 25px; color : rgb(255, 125, 125);">속성 A : 70 %</div>
+            </div>
+            <div   style= "height : 500px; width : 500px; float : left; margin-left : 60px;" >
+            <canvas id="line-chart35" style="padding : 30px;"></canvas>
+            <div style="position : absolute;top: 935px;left: 1420px; font-weight : bold; font-size : 25px; color : rgb(168,255,168);">속성 A : 70 %</div>
+            
+            </div>
+            </div>       
+
+
+<div style="height : 350px; width : 1670px;  margin : 30px; margin-left : 0px; background : white; margin-bottom: 0px;">
+        
+            <div style="height : 350px; width : 710px;  margin : 20px; float : left;">
+         <div style="width : 710px; height : 50px;  margin-top : 20px; padding : 15px; font-weight : bold; text-align : center; margin-left : 60px; font-size : 25px;"> 키워드 </div>           
+        <div class="table100-head">
+
+
+
+            </div><div class="table100-body js-pscroll">
+
+
+				</div><table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;margin-left: 80px;margin-right: 30px;">
+            
+
+            <tbody><tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            
+        </tbody></table>
+
+
+
+
+                    
+
+
+
+            </div>
+            <div style="height : 350px; width : 710px;  margin : 20px; float : left;">
+            <div style="width : 710px; height : 50px;  margin-top : 20px; padding : 15px; font-weight : bold; text-align : center;margin-left : 100px; font-size : 25px;"> 핵심문장</div>
+        <div class="table100-head">
+
+
+
+            </div><div class="table100-body js-pscroll">
+
+
+				</div>
+                
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;margin-left: 80px;margin-right: 30px;">
+            
+
+            <tbody><tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            
+        </tbody></table>
+             
+
+
+
+            </div> 
+
+
+
+            
+
+            
+                 
+ 
+
+        
+        </div>
+
+        <h2 style = "font-weight : bold; padding : 20px; background : white; width : 1670px;margin-bottom : 30px; ">기간별 키워드</h2>
+
+        <div style = "width : 1670px; height : 350px; margin-top: 20px; background-color : white;">
+        
+        <div   style = "height : 400px; width : 530px;  margin-left : 20px; float : left ;">
+            <div style = "width : 530px; height : 50px;  text-align : center; font-weight : bold; font-size : 20px; margin-top : 20px;">
+               1개월 
+            </div>
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;">
+            <div class="table100-head">
+
+
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            </div>
+        </table>
+            
+        
+        </div>
+        <div   style = "height : 400px; width : 530px;  margin-left : 20px; float : left; ">
+            <div style = "width : 530px; height : 50px;  text-align : center;font-weight : bold; font-size : 20px;margin-top : 20px;">
+               3개월 
+            </div>
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;">
+            <div class="table100-head">
+
+
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            </div>
+        </table>
+
+          
+        </div>
+        <div   style = "height : 400px; width : 530px;  margin-left : 20px; float : left;">
+            <div style = "width : 530px; height : 50px;  text-align : center; font-weight : bold; font-size : 20px;margin-top : 20px;">
+               6개월
+            </div>
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;">
+            <div class="table100-head">
+
+
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            </div>
+        </table>
+        
+        </div>
+        
+        </div>
+ 
+    </div>
+    
+    <div class="total_tab_content" id="design_content3">
+                   <h2 style = "font-weight : bold; padding : 20px; background : white; width : 1670px;margin-bottom : 30px; ">긍부정 분포도 - 속성 E</h2>
+     <div style= "width : 1670px; height : 550px; background : white; "> 
+
+
+
+
+            <div   style= "height : 500px; width : 500px; float : left; margin-left : 30px;" >
+            <canvas id="line-chart36" style="padding : 30px;"></canvas>
+            <div style="position : absolute;top: 935px;left: 300px; font-weight : bold; font-size : 25px; color : rgb(34, 172, 255);">속성 A : 70 %</div>
+            </div>
+            <div   style= "height : 500px; width : 500px; float : left; margin-left : 60px;" >
+            <canvas id="line-chart37" style="padding : 30px;"></canvas>
+            <div style="position : absolute;top: 935px;left: 860px; font-weight : bold; font-size : 25px; color : rgb(255, 125, 125);">속성 A : 70 %</div>
+            </div>
+            <div   style= "height : 500px; width : 500px; float : left; margin-left : 60px;" >
+            <canvas id="line-chart38" style="padding : 30px;"></canvas>
+            <div style="position : absolute;top: 935px;left: 1420px; font-weight : bold; font-size : 25px; color : rgb(168,255,168);">속성 A : 70 %</div>
+            
+            </div>
+            </div>       
+
+
+<div style="height : 350px; width : 1670px;  margin : 30px; margin-left : 0px; background : white; margin-bottom: 0px;">
+        
+            <div style="height : 350px; width : 710px;  margin : 20px; float : left;">
+         <div style="width : 710px; height : 50px;  margin-top : 20px; padding : 15px; font-weight : bold; text-align : center; margin-left : 60px; font-size : 25px;"> 키워드 </div>           
+        <div class="table100-head">
+
+
+
+            </div><div class="table100-body js-pscroll">
+
+
+				</div><table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;margin-left: 80px;margin-right: 30px;">
+            
+
+            <tbody><tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            
+        </tbody></table>
+
+
+
+
+                    
+
+
+
+            </div>
+            <div style="height : 350px; width : 710px;  margin : 20px; float : left;">
+            <div style="width : 710px; height : 50px;  margin-top : 20px; padding : 15px; font-weight : bold; text-align : center;margin-left : 100px; font-size : 25px;"> 핵심문장</div>
+        <div class="table100-head">
+
+
+
+            </div><div class="table100-body js-pscroll">
+
+
+				</div>
+                
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;margin-left: 80px;margin-right: 30px;">
+            
+
+            <tbody><tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            
+        </tbody></table>
+             
+
+
+
+            </div> 
+
+
+
+            
+
+            
+                 
+ 
+
+        
+        </div>
+
+        <h2 style = "font-weight : bold; padding : 20px; background : white; width : 1670px;margin-bottom : 30px; ">기간별 키워드</h2>
+
+        <div style = "width : 1670px; height : 350px; margin-top: 20px; background-color : white;">
+        
+        <div   style = "height : 400px; width : 530px;  margin-left : 20px; float : left ;">
+            <div style = "width : 530px; height : 50px;  text-align : center; font-weight : bold; font-size : 20px; margin-top : 20px;">
+               1개월 
+            </div>
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;">
+            <div class="table100-head">
+
+
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            </div>
+        </table>
+            
+        
+        </div>
+        <div   style = "height : 400px; width : 530px;  margin-left : 20px; float : left; ">
+            <div style = "width : 530px; height : 50px;  text-align : center;font-weight : bold; font-size : 20px;margin-top : 20px;">
+               3개월 
+            </div>
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;">
+            <div class="table100-head">
+
+
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            </div>
+        </table>
+
+          
+        </div>
+        <div   style = "height : 400px; width : 530px;  margin-left : 20px; float : left;">
+            <div style = "width : 530px; height : 50px;  text-align : center; font-weight : bold; font-size : 20px;margin-top : 20px;">
+               6개월
+            </div>
+        <table class="table table-striped table-bordered" style="width: 1550px;margin-top: 15px;">
+            <div class="table100-head">
+
+
+
+            </div>
+
+            <div class="table100-body js-pscroll">
+
+
+				<tr class="row100 body">
+                    <td class="cell100 column1">1</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">2</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+
+
+                 
+
+				</tr>
+                    <tr class="row100 body">
+                    <td class="cell100 column1">3</td>
+                    <td class="cell100 column2">키워드 문장 출력</td>
+				</tr>
+ 
+
+                 
+
+
+
+
+
+                
+
+
+            </div>
+        </table>
+        
+        </div>
+        
+        </div>
+
+    </div>
+    
+    
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+{% endblock %}
+
+
+
+
+{% block scripts %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+<script  type="text/javascript">
+var ctx = document.getElementById("myChart"); //캔버스 id값 가져오기
+var myChart = new Chart(ctx, {
+    type: 'pie', //그래프 형태 지정하기
+    data: {
+        labels: ["제품 상태", "사이즈", "가격", "사용성", "디자인"],
+        datasets: [{
+            label: '# of Votes', //상단 라벨(데이터값들의 그룹명)
+            data: [{{total.prod_status}}, {{total.size}}, {{total.price}}, {{total.usability}}, {{total.material}}],//데이터값
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',   //1번째 그래프의 바탕색
+                'rgba(54, 162, 235, 0.2)',   //2번째 그래프의 바탕색
+                'rgba(255, 206, 86, 0.2)',   //3번째 그래프의 바탕색
+                'rgba(75, 192, 192, 0.2)',   //4번째 그래프의 바탕색
+                'rgba(153, 102, 255, 0.2)',  //5번째 그래프의 바탕색
+                'rgba(255, 159, 64, 0.2)'    //6번째 그래프의 바탕색
+            ],
+            borderColor: [  
+                'rgba(255,99,132,1)',        //1번째 그래프의 선색
+                'rgba(54, 162, 235, 1)',     //2번째 그래프의 선색
+                'rgba(255, 206, 86, 1)',     //3번째 그래프의 선색
+                'rgba(75, 192, 192, 1)',     //4번째 그래프의 선색
+                'rgba(153, 102, 255, 1)',    //5번째 그래프의 선색
+                'rgba(255, 159, 64, 1)'      //6번째 그래프의 선색
+            ],
+            borderWidth: 1 //선굵기
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+
+///////////////////////////////////////////////////////////////////
+
+
+
+var ctx1 = document.getElementById("myChart1"); //캔버스 id값 가져오기
+var myChart1 = new Chart(ctx1, {
+    type: 'pie', //그래프 형태 지정하기
+    data: {
+        labels: ["1점", "2점", "3점", "4점", "5점"],
+        datasets: [{
+            label: '# of Votes', //상단 라벨(데이터값들의 그룹명)
+            data: [{{total.one_point}}, {{total.two_point}}, {{total.three_point}}, {{total.four_point}}, {{total.five_point}}],//데이터값
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',   //1번째 그래프의 바탕색
+                'rgba(54, 162, 235, 0.2)',   //2번째 그래프의 바탕색
+                'rgba(255, 206, 86, 0.2)',   //3번째 그래프의 바탕색
+                'rgba(75, 192, 192, 0.2)',   //4번째 그래프의 바탕색
+                'rgba(153, 102, 255, 0.2)',  //5번째 그래프의 바탕색
+                'rgba(255, 159, 64, 0.2)'    //6번째 그래프의 바탕색
+            ],
+            borderColor: [  
+                'rgba(255,99,132,1)',        //1번째 그래프의 선색
+                'rgba(54, 162, 235, 1)',     //2번째 그래프의 선색
+                'rgba(255, 206, 86, 1)',     //3번째 그래프의 선색
+                'rgba(75, 192, 192, 1)',     //4번째 그래프의 선색
+                'rgba(153, 102, 255, 1)',    //5번째 그래프의 선색
+                'rgba(255, 159, 64, 1)'      //6번째 그래프의 선색
+            ],
+            borderWidth: 1 //선굵기
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+
+/////////////////////////////////////////////////////////////////
+
+{% comment %} var ctx11 = document.getElementById("myChart11"); //캔버스 id값 가져오기
+var myChart = new Chart(ctx11, {
+    type: 'bar', //그래프 형태 지정하기
+     data: {
+        datasets: [{
+            type: 'bar',
+            label: 'Bar Dataset',
+            data: [10, 20, 30, 40,50,10, 20, 30, 40,50,10, 20, 30, 40,50,10, 20, 30, 40,50,10, 20, 30, 40,50,10, 20, 30, 40,50,],
+             backgroundColor: [
+             'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)',  'rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)',
+             'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)',  'rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)',
+             'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)',  'rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)',
+             'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)',  'rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)',
+             'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)',  'rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)',
+             'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)',  'rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)',
+             
+             
+             ],
+            
+        }, {
+            type: 'line',
+            label: 'Line Dataset',
+            data: [10, 20, 30, 40,50,10, 20, 30, 40,50,10, 20, 30, 40,50,10, 20, 30, 40,50,10, 20, 30, 40,50,10, 20, 30, 40,50,],
+            backgroundColor : 'transparent', 
+            borderColor : 'rgba(255,99,132,1)',
+            
+        }],
+        labels: ['1일', '2일', '3일', '4일','5일','6일','7일','8일','9일','10일','11일','12일','13일','14일','15일',
+        '16일','17일','18일','19일','20일','21일','22일','23일','24일','25일','26일','27일','28일','29일','30일']
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    },
+    
+    
+}); {% endcomment %}
+
+
+{% comment %} var ctx20  = document.querySelector('#line-chart20').getContext('2d') ;
+var myLineChart20 = new Chart(ctx20, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+            '긍정'
+        ],
+
+        datasets: [
+            {
+                label: [
+                    'test1'
+                ],
+                backgroundColor: [
+                    'rgb(34, 172, 255)','rgb(255, 255, 255)'
+                ],
+
+                data: [90,10],
+                borderColor : 'white'
+            }
+        ]
+    },
+    options: {
+        
+        maintainAspectRatio : false,
+        cutoutPercentage:80,
+        title: {
+            display: false
+        }
+
+    }
+
+});
+
+
+var ctx21  = document.querySelector('#line-chart21').getContext('2d') ;
+var myLineChart21 = new Chart(ctx21, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+            '긍정'
+        ],
+
+        datasets: [
+            {
+                label: [
+                    'test1'
+                ],
+                backgroundColor: [
+                    'rgb(34, 172, 255)','rgb(255, 255, 255)'
+                ],
+
+                data: [50,50],
+                borderColor: 'white'
+            }
+        ]
+    },
+    options: {
+        maintainAspectRatio : false,
+        cutoutPercentage:80,
+        
+
+        title: {
+            display: false
+        }
+    }
+
+});
+
+
+var ctx22  = document.querySelector('#line-chart22').getContext('2d') ;
+var myLineChart22 = new Chart(ctx22, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+            '부정'
+        ],
+
+        datasets: [
+            {
+                label: [
+                    'test1'
+                ],
+                backgroundColor: [
+                    'rgb(255, 125, 125)','rgb(255, 255, 255)'
+                ],
+
+                data: [40,60],
+                borderColor :'white'
+            }
+        ]
+    },
+    options: {
+        maintainAspectRatio : false,
+        cutoutPercentage:80,
+
+        title: {
+            display: false
+        }
+    }
+
+});
+
+
+
+var ctx23  = document.querySelector('#line-chart23').getContext('2d') ;
+var myLineChart23 = new Chart(ctx23, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+            '부정'
+        ],
+
+        datasets: [
+            {
+                label: [
+                    'test1'
+                ],
+                backgroundColor: [
+                     'rgb(255, 125, 125)','rgb(255, 255, 255)'
+                ],
+
+                data: [70,30],
+                borderColor : 'white'
+            }
+        ]
+    },
+    options: {
+        maintainAspectRatio : false,
+        cutoutPercentage:80,
+        
+
+        title: {
+            display: false
+        }
+    }
+
+}); {% endcomment %}
+
+
+
+
+var ctx24  = document.querySelector('#line-chart24').getContext('2d') ;
+var myLineChart24 = new Chart(ctx24, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+            '긍정'
+        ],
+
+        datasets: [
+            {
+                label: [
+                    'test1'
+                ],
+                backgroundColor: [
+                     'rgb(34, 172, 255)','rgb(255, 255, 255)'
+                ],
+
+                data: [70,30],
+                borderColor : 'white'
+            }
+        ]
+    },
+    options: {
+        maintainAspectRatio : false,
+        cutoutPercentage:80,
+        
+
+        title: {
+            display: false
+        }
+    }
+
+});
+
+var ctx25  = document.querySelector('#line-chart25').getContext('2d') ;
+var myLineChart25 = new Chart(ctx25, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+            '부정'
+        ],
+
+        datasets: [
+            {
+                label: [
+                    'test1'
+                ],
+                backgroundColor: [
+                     'rgb(255, 125, 125)','rgb(255, 255, 255)'
+                ],
+
+                data: [70,30],
+                borderColor : 'white'
+            }
+        ]
+    },
+    options: {
+        maintainAspectRatio : false,
+        cutoutPercentage:80,
+        
+
+        title: {
+            display: false
+        }
+    }
+
+});
+
+
+var ctx26  = document.querySelector('#line-chart26').getContext('2d') ;
+var myLineChart26 = new Chart(ctx26, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+            '중립'
+        ],
+
+        datasets: [
+            {
+                label: [
+                    'test1'
+                ],
+                backgroundColor: [
+                     'rgb(168,255,168)','rgb(255, 255, 255)'
+                ],
+
+                data: [70,30],
+                borderColor : 'white'
+            }
+        ]
+    },
+    options: {
+        maintainAspectRatio : false,
+        cutoutPercentage:80,
+        
+
+        title: {
+            display: false
+        }
+    }
+
+});
+
+
+
+var ctx27  = document.querySelector('#line-chart27').getContext('2d') ;
+var myLineChart27 = new Chart(ctx27, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+            '긍정'
+        ],
+
+        datasets: [
+            {
+                label: [
+                    'test1'
+                ],
+                backgroundColor: [
+                     'rgb(34, 172, 255)','rgb(255, 255, 255)'
+                ],
+
+                data: [70,30],
+                borderColor : 'white'
+            }
+        ]
+    },
+    options: {
+        maintainAspectRatio : false,
+        cutoutPercentage:80,
+        
+
+        title: {
+            display: false
+        }
+    }
+
+});
+
+var ctx28  = document.querySelector('#line-chart28').getContext('2d') ;
+var myLineChart28 = new Chart(ctx28, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+            '부정'
+        ],
+
+        datasets: [
+            {
+                label: [
+                    'test1'
+                ],
+                backgroundColor: [
+                     'rgb(255, 125, 125)','rgb(255, 255, 255)'
+                ],
+
+                data: [70,30],
+                borderColor : 'white'
+            }
+        ]
+    },
+    options: {
+        maintainAspectRatio : false,
+        cutoutPercentage:80,
+        
+
+        title: {
+            display: false
+        }
+    }
+
+});
+
+
+var ctx29  = document.querySelector('#line-chart29').getContext('2d') ;
+var myLineChart29 = new Chart(ctx29, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+            '중립'
+        ],
+
+        datasets: [
+            {
+                label: [
+                    'test1'
+                ],
+                backgroundColor: [
+                     'rgb(168,255,168)','rgb(255, 255, 255)'
+                ],
+
+                data: [70,30],
+                borderColor : 'white'
+            }
+        ]
+    },
+    options: {
+        maintainAspectRatio : false,
+        cutoutPercentage:80,
+        
+
+        title: {
+            display: false
+        }
+    }
+
+});
+
+
+var ctx30  = document.querySelector('#line-chart30').getContext('2d') ;
+var myLineChart30 = new Chart(ctx30, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+            '긍정'
+        ],
+
+        datasets: [
+            {
+                label: [
+                    'test1'
+                ],
+                backgroundColor: [
+                     'rgb(34, 172, 255)','rgb(255, 255, 255)'
+                ],
+
+                data: [70,30],
+                borderColor : 'white'
+            }
+        ]
+    },
+    options: {
+        maintainAspectRatio : false,
+        cutoutPercentage:80,
+        
+
+        title: {
+            display: false
+        }
+    }
+
+});
+
+var ctx31  = document.querySelector('#line-chart31').getContext('2d') ;
+var myLineChart31 = new Chart(ctx31, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+            '부정'
+        ],
+
+        datasets: [
+            {
+                label: [
+                    'test1'
+                ],
+                backgroundColor: [
+                     'rgb(255, 125, 125)','rgb(255, 255, 255)'
+                ],
+
+                data: [70,30],
+                borderColor : 'white'
+            }
+        ]
+    },
+    options: {
+        maintainAspectRatio : false,
+        cutoutPercentage:80,
+        
+
+        title: {
+            display: false
+        }
+    }
+
+});
+
+
+var ctx32  = document.querySelector('#line-chart32').getContext('2d') ;
+var myLineChart32 = new Chart(ctx32, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+            '중립'
+        ],
+
+        datasets: [
+            {
+                label: [
+                    'test1'
+                ],
+                backgroundColor: [
+                     'rgb(168,255,168)','rgb(255, 255, 255)'
+                ],
+
+                data: [70,30],
+                borderColor : 'white'
+            }
+        ]
+    },
+    options: {
+        maintainAspectRatio : false,
+        cutoutPercentage:80,
+        
+
+        title: {
+            display: false
+        }
+    }
+
+});
+
+
+
+var ctx33  = document.querySelector('#line-chart33').getContext('2d') ;
+var myLineChart33 = new Chart(ctx33, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+            '긍정'
+        ],
+
+        datasets: [
+            {
+                label: [
+                    'test1'
+                ],
+                backgroundColor: [
+                     'rgb(34, 172, 255)','rgb(255, 255, 255)'
+                ],
+
+                data: [70,30],
+                borderColor : 'white'
+            }
+        ]
+    },
+    options: {
+        maintainAspectRatio : false,
+        cutoutPercentage:80,
+        
+
+        title: {
+            display: false
+        }
+    }
+
+});
+
+var ctx34  = document.querySelector('#line-chart34').getContext('2d') ;
+var myLineChart34 = new Chart(ctx34, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+            '부정'
+        ],
+
+        datasets: [
+            {
+                label: [
+                    'test1'
+                ],
+                backgroundColor: [
+                     'rgb(255, 125, 125)','rgb(255, 255, 255)'
+                ],
+
+                data: [70,30],
+                borderColor : 'white'
+            }
+        ]
+    },
+    options: {
+        maintainAspectRatio : false,
+        cutoutPercentage:80,
+        
+
+        title: {
+            display: false
+        }
+    }
+
+});
+
+
+var ctx35  = document.querySelector('#line-chart35').getContext('2d') ;
+var myLineChart35 = new Chart(ctx35, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+            '중립'
+        ],
+
+        datasets: [
+            {
+                label: [
+                    'test1'
+                ],
+                backgroundColor: [
+                     'rgb(168,255,168)','rgb(255, 255, 255)'
+                ],
+
+                data: [70,30],
+                borderColor : 'white'
+            }
+        ]
+    },
+    options: {
+        maintainAspectRatio : false,
+        cutoutPercentage:80,
+        
+
+        title: {
+            display: false
+        }
+    }
+
+});
+
+
+
+var ctx36  = document.querySelector('#line-chart36').getContext('2d') ;
+var myLineChart36 = new Chart(ctx36, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+            '긍정'
+        ],
+
+        datasets: [
+            {
+                label: [
+                    'test1'
+                ],
+                backgroundColor: [
+                     'rgb(34, 172, 255)','rgb(255, 255, 255)'
+                ],
+
+                data: [70,30],
+                borderColor : 'white'
+            }
+        ]
+    },
+    options: {
+        maintainAspectRatio : false,
+        cutoutPercentage:80,
+        
+
+        title: {
+            display: false
+        }
+    }
+
+});
+
+var ctx37  = document.querySelector('#line-chart37').getContext('2d') ;
+var myLineChart37 = new Chart(ctx37, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+            '부정'
+        ],
+
+        datasets: [
+            {
+                label: [
+                    'test1'
+                ],
+                backgroundColor: [
+                     'rgb(255, 125, 125)','rgb(255, 255, 255)'
+                ],
+
+                data: [70,30],
+                borderColor : 'white'
+            }
+        ]
+    },
+    options: {
+        maintainAspectRatio : false,
+        cutoutPercentage:80,
+        
+
+        title: {
+            display: false
+        }
+    }
+
+});
+
+
+var ctx38  = document.querySelector('#line-chart38').getContext('2d') ;
+var myLineChart38 = new Chart(ctx38, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+            '중립'
+        ],
+
+        datasets: [
+            {
+                label: [
+                    'test1'
+                ],
+                backgroundColor: [
+                     'rgb(168,255,168)','rgb(255, 255, 255)'
+                ],
+
+                data: [70,30],
+                borderColor : 'white'
+            }
+        ]
+    },
+    options: {
+        maintainAspectRatio : false,
+        cutoutPercentage:80,
+        
+
+        title: {
+            display: false
+        }
+    }
+
+});
+
+
+
+
+ </script>
+
+ {%endblock%}

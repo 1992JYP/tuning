@@ -1,0 +1,709 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block style%}
+<style type="text/css">
+.pagination{
+  
+  margin-left: 350px  !important;
+  width : 400px !important; 
+  
+
+}
+#example1_paginate{
+	z-index : 1;
+}
+h4 {
+    color : black !important;
+}
+</style>
+{%endblock%}
+
+{% block title %}생활낙원{% endblock %}
+{%block web_title%}<title>랭킹분석</title>{%endblock%}
+
+{% block 'side_bar.html'  %}
+
+<div class="main-sidebar">
+    <aside id="sidebar-wrapper">
+        <div class="sidebar-brand">
+            <a href="{% url 'main' %}">생활낙원
+            </a>
+        </div>
+        <div class="sidebar-brand sidebar-brand-sm">
+            <a href="index.html">St</a>
+        </div>
+        <ul class="sidebar-menu list" >
+            <li id ="first_main_menu">
+                <a href="{% url 'main' %} " class="nav-link has-dropdown">
+                    <i class="fas fa-fire"></i>
+                    <span>DASHBOARD</span>
+                </a>
+            </li>
+            <li>
+                <a href={% url 'keyword' %} class="nav-link has-dropdown color_change" data-toggle="dropdown">
+                <i class="fas fa-columns"></i>
+                <span>랭킹분석</span>
+                </a>
+            </li>           
+            <li>
+                <a href={% url 'review' %} class="nav-link">
+                    <i class="far fa-square"></i>
+                    <span>키워드 분석</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'Dashboard' %} " class="nav-link has-dropdown">
+                    <i class="fas fa-th"></i>
+                    <span>트랜드 추이</span>
+                </a>
+                <ul class="dropdown-menu"></ul>
+            </li>
+
+
+        </ul>
+    </aside>
+</div>
+
+
+
+
+ {%endblock%}
+
+
+{% block content %}
+
+
+
+
+
+<!-- 최상단 메뉴-->
+<div class="section-header" style="height : 72px;background-color : white;position :absolute;width: 1653px;left: 250px;top: 0px;" >
+    <h3 style="position :absolute; margin : 25px 20px;font-weight :bold">랭킹 분석</h3>
+    <div class="section-header-button" style="float :right;margin: 25px 20px;">
+        <div class="section-header-breadcrumb">
+            <div class="breadcrumb-item active" style="float : left;">
+                <a href="/">분석</a>
+            </div>
+            <div class="breadcrumb-item" style="float : left;">랭킹분석</div>
+          
+        </div>
+    </div>
+</div>
+
+<div style="margin-top : 25px; height : 40px; width: 300px; background-color :white;">
+
+<form action="">
+    <div style="position: absolute;"> 
+    <input   type="text"  class="form-control" alt="" style="width: 500px; float: left;" id="keyworld" name="key">
+    <input type="submit" class="btn btn-default" alt="" value = "검색">
+</div>
+</form>
+
+
+
+   </div> 
+
+
+<!--자사 검색 결과 // 타사 검색 결과 -->
+<div style="margin-top : 25px; height : 80px; background-color :white;">
+ <h2 style="padding-top : 5px;font-weight :bold;float : left;margin-left : 25px;margin-right: 598px;">자사 검색 결과</h2>
+ <h2 style="padding-top : 5px; font-weight :bold;float : left;">타사 검색 결과</h2>
+</div> 
+
+
+<!-- LiPACO // 네이버 // 쿠팡  -->
+<div class="row" style="margin-top: 20px;height: 1150px;">
+
+ <div class="radio-buttons" style="width: 552px;position :absolute;z-index : 10;top: 310px;left: 296px;">
+
+<form action="{% url 'main' %} " method ="post">
+    {% csrf_token %}
+
+        <label class="custom-radio" for = "radio1">
+          <input type="radio" name="radio" id="radio1" value="pd_name"/>
+          <span class="radio-btn">
+            <i class="las la-check"></i>
+            <i class="las la-biking"></i>
+            <h3 class = "Search_header">순위</h3>
+          </span>
+        </label>
+
+
+
+        <label class="custom-radio" for = "radio1">
+          <input type="radio" name="radio" id="radio1" value="pd_name"/>
+          <span class="radio-btn">
+            <i class="las la-check"></i>
+            <i class="las la-biking"></i>
+            <h3 class = "Search_header">제품명</h3>
+          </span>
+        </label>
+
+
+
+        <label class="custom-radio" for = "radio1">
+          <input type="radio" name="radio" id="radio1" value="pd_name"/>
+          <span class="radio-btn">
+            <i class="las la-check"></i>
+            <i class="las la-biking"></i>
+            <h3 class = "Search_header">소비자가</h3>
+          </span>
+        </label>
+
+
+
+        <label class="custom-radio" for = "radio1">
+          <input type="radio" name="radio" id="radio1" value="pd_name"/>
+          <span class="radio-btn">
+            <i class="las la-check"></i>
+            <i class="las la-biking"></i>
+            <h3 class = "Search_header">평점</h3>
+          </span>
+        </label>
+
+    {% comment %} <input id = "DASHBOARD_Search" type = "text" style="width: 235px;border : 1px solid rgb(218,218,218);position : absolute;top: 148px;left: 1500px;height: 32px;"name="DASHBOARD_Search"/>
+    <input type = "submit" value = "검색" style = "position : absolute;top: 148px;left: 1757px;width: 73px;height: 32px; border-radius : 5px;"/> {% endcomment %}
+
+</form>
+
+
+
+            </div>
+
+    <div class="col-12 col-md-6 col-lg-6">
+        <div class="card" style="height: 800px;">
+
+            <img src="{% static 'assets/img/LiPACO.png' %}" style="width : 180px;height : 150px;position:absolute;bottom: 697px;right: 610px;"/>
+            <div class="card-body" >
+
+
+
+
+
+
+                <table id="example1" class="table table-striped table-bordered" style="margin-top : 72px;">
+                    <div class="table100-head">
+
+                        <thead>
+                            <tr class="row100 head">
+                                <th class="cell100 column1">순위
+                                </th>
+                                <th class="cell100 column5">이미지</th>
+                                <th class="cell100 column2">제품명</th>
+                                <th class="cell100 column3">소비자가</th>
+                                <th class="cell100 column4">평점</th>
+
+                            </tr>
+                        </thead>
+
+                    </div>
+
+                    <div class="table100-body js-pscroll">
+
+                         {% for i in ranking %}
+                        <tr class="row100 body">
+                            <td class="cell100 column1">{{i.id}}</td>
+                            <td class="cell100 column5"><img src = '{{i.pd_image}}' style = "width : 70px; height : 70px;"/></td>
+                            <td class="cell100 column2">{{i.pd_name}}</td>
+                            <td class="cell100 column3">{{i.pd_price}}</td>
+                            <td class="cell100 column4">{{i.pd_grade}}</td>
+                        </tr>
+                        {% endfor %}                 
+                    </div>
+                </table>
+
+            <div style="float : right; font-size : 15px; "> 
+            <span class="step-links">
+                {% if ranking.has_previous %}
+                    <a href="?page=1" style= " border : 1px  solid rgb(228,228,228); padding : 10px; border-radius : 10px;">&laquo; first</a>
+                    <a href="?page={{ ranking.previous_page_number }}" style= " border : 1px  solid rgb(228,228,228);padding : 10px;border-radius : 10px;">previous</a>
+                {% endif %}
+
+                <span class="current" style= " border : 1px  solid rgb(228,228,228);padding : 10px;border-radius : 10px;">
+                    Page {{ ranking.number }} of {{ ranking.paginator.num_pages }}.
+                </span>
+
+                {% if ranking.has_next %}
+                    <a href="?page={{ ranking.next_page_number }}" style= " border : 1px  solid rgb(228,228,228); margin-left : 5px;padding : 10px;border-radius : 10px;">next</a>
+                    <a href="?page={{ ranking.paginator.num_pages }}" style= " border : 1px  solid rgb(228,228,228);padding : 10px;border-radius : 10px;">last &raquo;</a>
+                {% endif %}
+            </span>
+            </div>
+
+
+
+            </div>
+
+        </div>
+        <div
+            class="card"
+            style="left: 825px;position :absolute;top: 590px;height: 560px; width : 780px;">
+            <div class="card-header">
+                <img
+                    src="{% static 'assets/img/coupang.png' %}"
+                    style="width : 100px; height : 40px;"/>
+            </div>
+
+            <div class="card-body">
+
+                <div id="naver_box">
+                    <table id="example3" class="table table-striped table-bordered">
+                        <div class="table100-head">
+
+                            <thead>
+                                <tr class="row100 head">
+                                    <th class="cell100 column1">순위
+                                    </th>
+                                    <th class="cell100 column5">이미지</th>
+                                    <th class="cell100 column2">제품명</th>
+                                    <th class="cell100 column3">소비자가</th>
+                                    <th class="cell100 column4">평점</th>
+
+                                </tr>
+                            </thead>
+
+                        </div>
+                        <div class="table100-body js-pscroll">
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            {% for i in  rank_today_cp%}
+                            <tr class="row100 body">
+                                <td class="cell100 column1">{{i.id}}</td>
+                                <td class="cell100 column5"><img src = '{{i.pd_image}}' style = "width : 70px; height : 70px;"/></td>
+                                <td class="cell100 column2">{{i.pd_name}}</td>
+                                <td class="cell100 column3">{{i.pd_price}}</td>
+                                <td class="cell100 column4">{{i.pd_grade}}</td>
+
+                            </tr>
+                            {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-6" style="height: 600px;">
+
+        <div class="card" style="height: 560px;">
+            <div class="card-header">
+                <img
+                    src="{% static 'assets/img/naver.png' %}"
+                    style="width : 100px; height : 40px;"/>
+            </div>
+
+            <div class="card-body">
+                <div id="naver_box">
+                    <table id="example2" class="table table-striped table-bordered">
+                        <div class="table100-head">
+
+                            <thead>
+                                <tr class="row100 head">
+                                    <th class="cell100 column1">순위
+                                    </th>
+                                    <th class="cell100 column5">이미지</th>
+                                    <th class="cell100 column2">제품명</th>
+                                    <th class="cell100 column3">소비자가</th>
+                                    <th class="cell100 column4">평점</th>
+
+                                </tr>
+                            </thead>
+
+                        </div>
+                        <div class="table100-body js-pscroll">
+
+
+
+
+
+                        {% for i in  rank_today_nv%}
+  
+                            <tr class="row100 body">
+                                <td class="cell100 column1">{{i.id}}</td>
+                                <td class="cell100 column5"><img src = '{{i.pd_image}}' style = "width : 70px; height : 70px;"/></td>
+                                <td class="cell100 column2">{{i.pd_name}}</td>
+                                <td class="cell100 column3">{{i.pd_price}}</td>
+                                <td class="cell100 column4">{{i.pd_grade}}</td>
+
+                            </tr>
+                            {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div> 
+
+
+<!-- 자사 제품  랭팅 변동 그래프-->
+<div style="margin-top : 25px; height : 900px; background-color :white;">
+    <h2 style="padding : 20px; padding-top : 30px; font-weight :bold">자사 제품 랭킹 변동 그래프</h2>
+
+    <div
+        style="float :left; width  :1500px; height : 780px; padding : 40px; margin-right : 20px; margin-left : 40px; ">
+
+        <img
+            src="{% static 'assets/img/LiPACO.png' %}"
+            style="width : 180px;height : 150px;position:absolute;top: 1470px;left: 353px;"/>
+        <canvas id="chartJSContainer2" style="width : 600px; height : 300px;"></canvas>
+
+    </div>
+
+</div>
+
+
+<!-- 타사 제춤 랭킹 변동 그래프   -->
+<div style="margin-top : 25px; height : 670px; background-color :white;">
+    <h2 style="padding : 20px; padding-top : 30px; font-weight :bold">타사 제품 랭킹 변동 그래프</h2>
+
+    <div
+        style="float :left; width  :760px; height : 500px; padding : 40px; margin-right : 20px; margin-left : 40px;">
+        <img
+            src="{% static 'assets/img/coupang.png' %}"
+            style="width : 100px; height : 40px;"/>
+
+        <canvas id="chartJSContainer" style="width : 600px; height : 300px;"></canvas>
+
+    </div>
+    <div style="float :left; width  :710px; height : 500px; padding : 40px;  ">
+
+        <img
+            src="{% static 'assets/img/naver.png' %}"
+            style="width : 100px; height : 40px;"/>
+
+        <canvas id="chartJSContainer1" style="width : 600px; height : 325px;"></canvas>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block foot_size%} <div class="main-content" style="width : 1900px !important; height : 3100px !important; top : 24px;">{% endblock %}
+
+{% block scripts %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
+<script  type="text/javascript">
+
+
+
+$(document).ready(function() {
+    $('#example2').DataTable({
+	// 표시 건수기능 숨기기
+	lengthChange: false,
+	// 검색 기능 숨기기
+	searching: false,
+	// 정렬 기능 숨기기
+	ordering: false,
+	// 정보 표시 숨기기
+	info: false,
+	// 페이징 기능 숨기기
+	paging: false
+      
+    });
+
+    
+});
+
+
+$(document).ready(function() {
+    $('#example3').DataTable({
+	// 표시 건수기능 숨기기
+	lengthChange: false,
+	// 검색 기능 숨기기
+	searching: false,
+	// 정렬 기능 숨기기
+	ordering: false,
+	// 정보 표시 숨기기
+	info: false,
+	// 페이징 기능 숨기기
+	paging: false
+      
+    });
+
+    
+});
+
+window.onload = function(){
+	document.getElementById("naver_box").style.display = ""
+	document.getElementById("coupang_box").style.display = "none"
+
+	
+
+
+}
+
+function naver_open(){
+
+	document.getElementById("naver_box").style.display = ""
+	document.getElementById("coupang_box").style.display = "none"
+
+
+
+
+}
+
+function coupang_open(){
+	document.getElementById("naver_box").style.display = "none"
+	document.getElementById("coupang_box").style.display = ""
+
+
+
+}
+ window.addEventListener('DOMContentLoaded', function() {
+	  $('.loading_back').delay('600').fadeOut();
+}) 
+
+var options = {
+  type: 'line',
+  data: {
+    labels: ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일","일요일"],
+    datasets: [
+	    {
+	      label: '쿠팡_1위',
+       
+          borderColor: 'rgb(255, 0, 0)',
+	      data: [6, 4, 6, 10, 8, 10, 4],
+      	borderWidth: 1,
+          backgroundColor : 'transparent',
+          lineTension : 0,
+    	},
+        {
+	      label: '쿠팡_2위',
+               
+          borderColor: 'rgb(255, 0, 0)',
+	      data: [10, 3, 2, 5, 3, 9, 2],
+      	borderWidth: 1,
+          backgroundColor : 'transparent',
+          lineTension : 0,
+    	},
+                {
+	      label: '쿠팡_3위',
+               
+          borderColor: 'rgb(255, 0, 0)',
+	      data: [6, 2, 6, 10, 4, 10, 2],
+      	borderWidth: 1,
+          backgroundColor : 'transparent',
+          lineTension : 0,
+    	},
+
+      
+		]
+  },
+  options: {
+  	scales: {
+    	yAxes: [{
+        ticks: {
+		reverse: false,
+        max : 10,
+        min : 1,
+        reverse: true, // this works
+        beginAtZero:true
+        }
+      }]
+    }
+  }
+};
+
+var ctx = document.getElementById('chartJSContainer').getContext('2d');
+
+//new Chart(ctx, options);
+var myLineChart = Chart.Line(ctx, options);	
+
+   //변경 데이터 선언
+	 var reData = {"data":[10, 8, 5, 8, 8, 12 ]};
+   //데이터 변경 
+		function changeData(chart, data) {		
+			var new_data = data.data;
+			chart.data.datasets.push({
+          data : new_data,
+          borderWidth : 2 //선굵기
+			  });
+		    // console.dir(chart.data.datasets);
+		    chart.update();
+		}
+    //데이터 삭제
+    function removeData(chart, data) {
+		    chart.data.datasets.pop({
+		       	data : data
+		    });
+		   // console.log(chart.data);
+		    chart.update();
+		}
+    
+
+
+
+/////////////////////////////////////////////////////////////////
+var options1 = {
+  type: 'bar',
+  data: {
+    labels: ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일","일요일"],
+    datasets: [
+	    {
+	      label: '네이버_1위',
+       
+          borderColor: 'rgb(34, 177, 76)',
+	      data: [6, 4, 6, 10, 8, 10, 4],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',
+           lineTension : 0,
+    	},
+        {
+	      label: '네이버_2위',
+               
+          borderColor: 'rgb(34, 177, 76)',
+	      data: [10, 3, 2, 5, 3, 9, 2],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',
+           lineTension : 0,
+    	},
+                {
+	      label: '네이버_3위',
+               
+          borderColor: 'rgb(34, 177, 76)',
+	      data: [6, 2, 6, 10, 4, 10, 2],
+      	borderWidth: 1,
+           backgroundColor : 'transparent',
+           lineTension : 0,
+    	},
+
+      
+		]
+  },
+  options: {
+  	scales: {
+    	yAxes: [{
+        ticks: {
+		reverse: false,
+        max : 10,
+        min : 1,
+        reverse: true, // this works
+        beginAtZero:true
+        }
+      }]
+    }
+  }
+};
+
+var ctx1 = document.getElementById('chartJSContainer1').getContext('2d');
+
+//new Chart(ctx, options);
+var myLineChart1 = Chart.Line(ctx1, options1);	
+
+   //변경 데이터 선언
+	 var reData = {"data":[10, 8, 5, 8, 8, 12 ]};
+   //데이터 변경 
+		function changeData(chart, data) {		
+			var new_data = data.data;
+			chart.data.datasets.push({
+          data : new_data,
+          borderWidth : 2 //선굵기
+			  });
+		    // console.dir(chart.data.datasets);
+		    chart.update();
+		}
+    //데이터 삭제
+    function removeData(chart, data) {
+		    chart.data.datasets.pop({
+		       	data : data
+		    });
+		   // console.log(chart.data);
+		    chart.update();
+		}
+    
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////
+var options2 = {
+  type: 'bar',
+  data: {
+    labels: ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일","일요일"],
+    datasets: [
+	    {
+	      label: '자사제품',
+       
+        borderColor: 'rgb(0, 255, 255)',
+	    data: [6, 4, 6, 10, 8, 10, 4],
+      	borderWidth: 1,
+          backgroundColor : 'transparent',
+          lineTension : 0,
+    	},
+     
+		]
+  },
+  options: {
+  	scales: {
+    	yAxes: [{
+        ticks: {
+		reverse: false,
+        max : 10,
+        min : 1,
+        reverse: true, // this works
+        beginAtZero:true
+        }
+      }]
+    }
+  }
+};
+
+var ctx2 = document.getElementById('chartJSContainer2').getContext('2d');
+
+//new Chart(ctx, options);
+var myLineChart2 = Chart.Line(ctx2, options2);	
+
+ </script>
+
+ {%endblock%}

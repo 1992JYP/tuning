@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block script %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.6.2/d3.min.js" integrity="sha512-L2eTGYYQqzK5YozYyUVrJKj2ZRnHE3QzV1+1yY6VXHExStF3potRZyEcD/B6sTOe04xYxB21QNLmVTQFcgwovg==" crossorigin="anonymous"></script>
+    <script src="{% static 'js/cookie.js'%}"></script>
+    <script src="{% static 'js/main/home.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'css/crawling/crawling.css' %}">
+  
+
+</script>   
+{% endblock %}
+
+{% block title %}item_detail{% endblock %}
+
+{% block content-image %}{% endblock %}
+
+
+{% block content %}
+    <button name = 'button' onclick='history.back()'>돌가기기</button>
+
+    <div>
+        <div id ="detail" >
+
+            <ul>
+               
+                    <li >
+                        <span>{{item_detail.pd_index}}</span>
+                        
+                    </li>
+                    <li>
+                    <span> {{item_detail.keyword}}</span>
+                    </li>
+                    
+                    <li>
+                    <span><a href= {{item_detail.page_link}}>{{item_detail.title}}</a></span>
+                    </li>
+                   
+                    <li>
+                     <span>{{item_detail.product_id}}</span>
+                    </li>
+                    <li>
+                     <span>{{item_detail.price}}</span>
+                    </li>
+                    <li>
+                     <span>{{item_detail.review_count}}</span>
+                    </li>
+                    {% if item_detail.image_link %}
+                    <li>
+                     <img src={{item_detail.image_link}}>
+                    </li>
+                     {% endif %}    
+                    <li>
+                     <span>{{item_detail.item_id}}</span>
+                    </li>
+                    <li>
+                     <span>{{item_detail.grade}}</span>
+                    </li>
+                  
+                </ul>
+   
+
+
+            </div>
+    </div>
+
+{% endblock %}
+
+
+{% comment %} 
+
+{% if item_info_list %}
+{% for Cp_Product in item_info_list %}
+<div><tr> 
+<td>순위</td>
+<td>{{Cp_Product.pd_index}} </td>
+</tr>
+</div>
+<div><tr>
+<td>상품명</td>
+<td> {{Cp_Product.title}} </td>
+</tr>
+</div>
+
+<p>총 리뷰검색 개수 : {{Cp_Product.review_count}}</p>
+
+
+
+{% endfor %}
+
+{% else %}
+
+{% endblock %} {% endcomment %}
+
+
+
+
+
+
+
+
+
+

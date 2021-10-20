@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block script %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.6.2/d3.min.js" integrity="sha512-L2eTGYYQqzK5YozYyUVrJKj2ZRnHE3QzV1+1yY6VXHExStF3potRZyEcD/B6sTOe04xYxB21QNLmVTQFcgwovg==" crossorigin="anonymous"></script>
+    <script src="{% static 'js/cookie.js'%}"></script>
+    <script src="{% static 'js/main/home.js'%}"></script>
+{% endblock %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content-image %}{% endblock %}
+
+
+{% comment %} jyp block test {% endcomment %}
+{% block blocktest%}
+<table border=1px><th>test</th><th>test</th><th>{{testtext}}</th>
+
+  
+  {% for i in test %}
+    <tr>
+    <td><h1>{{i.id}}</h1></td>
+    <td><h1>{{i.name}}</h1></td>
+    <td><h1>{{i.position}}</h1></td>
+    <td><h1>{{i.phone}}</h1></td>
+    </tr>
+  {% endfor %}
+
+</table>
+{% endblock%} 
+{% comment %} jyp block test {% endcomment %}
+
+{% block content %}
+<div class="card-deck mb-3 text-center">
+    <div class="mb-4"></div>
+    <div class="card mb-4 box-shadow">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Count Ball</h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title" id="viewCount"></h1>
+        <div id="Ball"></div>
+        <form action="{% url 'dbtest' %}" method="post">
+          {% csrf_token %}
+          <input type="text" name="insertname">
+          <input type="text" name="insertphone"/>
+          <input type="text" name="insertposition"/>
+          <input type="submit" value="OK"/>
+        </form>
+        <h1>{{name}}</h1>
+      </div>
+    </div>
+    <div class="mb-4"></div>
+  </div>
+</div>
+{% endblock %}

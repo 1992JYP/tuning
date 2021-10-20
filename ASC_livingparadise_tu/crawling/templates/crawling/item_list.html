@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block script %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.6.2/d3.min.js" integrity="sha512-L2eTGYYQqzK5YozYyUVrJKj2ZRnHE3QzV1+1yY6VXHExStF3potRZyEcD/B6sTOe04xYxB21QNLmVTQFcgwovg==" crossorigin="anonymous"></script>
+    <script src="{% static 'js/cookie.js'%}"></script>
+    <script src="{% static 'js/main/home.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'css/crawling/crawling.css' %}">
+  
+
+</script>   
+{% endblock %}
+
+{% block title %}item_list{% endblock %}
+
+{% block content-image %}{% endblock %}
+
+
+{% block content %}
+    <form action ="" method="get">
+        <input type="text" name="q" value="{{q}}"/>
+        <input type="submit" value="검색"/>
+    </form>
+
+
+    <div>
+        <div id ="review" >
+
+            <ul>
+                {% if item_list%}
+                
+                {% for Cp_Product in item_list %}
+                    <li >
+                        <span >{{Cp_Product.pd_index}}</span>
+                        <span><a href="item_detail/?pid={{Cp_Product.product_id}}&iid={{Cp_Product.item_id}}">{{Cp_Product.title}}</a></span>
+                        <span >{{Cp_Product.grade}}</span>
+                    </li>
+                    {% endfor %}
+                
+
+                {% else %}
+                
+                {% for list in change_list %}
+                   <li >
+                   
+                        <span >{{list.title}}</span>
+                        {% comment %} <span><a href="item_detail/?pid={{Cp_Product.product_id}}&iid={{Cp_Product.item_id}}">{{Cp_Product.title}}</a></span> {% endcomment %}
+                        <span >{{list.rankingChange}}</span>
+                    </li>
+                    {% endfor %}
+                {% endif %}
+                 
+                </ul>
+
+
+
+            </div>
+    </div>
+             
+{% endblock %}
+
+
+{% comment %} 
+
+{% if item_info_list %}
+{% for Cp_Product in item_info_list %}
+<div><tr> 
+<td>순위</td>
+<td>{{Cp_Product.pd_index}} </td>
+</tr>
+</div>
+<div><tr>
+<td>상품명</td>
+<td> {{Cp_Product.title}} </td>
+</tr>
+</div>
+
+<p>총 리뷰검색 개수 : {{Cp_Product.review_count}}</p>
+
+
+
+{% endfor %}
+
+{% else %}
+
+{% endblock %} {% endcomment %}
+
+
+
+
+
+
+
+
+
+
